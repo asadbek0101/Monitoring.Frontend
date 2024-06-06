@@ -1,0 +1,22 @@
+.info-for-user {
+  width: 300px;
+  height: fit-content;
+  left: 100%;
+  top: 50%;
+  border-radius: 20px;
+  z-index: 1000;
+}
+
+.info-for-user-table {
+  right: 100%;
+  top: 100%;
+  z-index: 1000;
+}
+
+.infoTd {
+  padding: 1px 5px !important;
+}
+
+.eng-color {
+  color: red;
+}

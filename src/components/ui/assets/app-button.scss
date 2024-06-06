@@ -1,0 +1,18 @@
+.app-button{
+        box-shadow: 0 1px 1px 1px rgb(202, 194, 194);
+        border: none;
+        border-radius: 2px;
+        font-weight: 500;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        background-color: #fff;
+}
+
+.disabled{
+        // background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)) !important;
+        background-image: #fff !important;
+}

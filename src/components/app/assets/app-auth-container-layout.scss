@@ -1,0 +1,27 @@
+.app-auth-container-layout {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ebf0f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .auth-logo-image {
+    width: calc(100% - 500px);
+    height: 100%;
+    //background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(./logo-image.png);
+    background-image: url(./logo-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+  }
+
+  .auth-form-wrapper {
+    width: 500px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,0 +1,25 @@
+.radio-ui {
+  .radio-item {
+    width: 14px;
+    height: 14px;
+
+    .active-item {
+      width: 6px;
+      height: 6px;
+    }
+  }
+}
+
+.theme-for-radio {
+  width: 20px;
+  height: 15px;
+}
+
+.text-language {
+  font-size: 16px;
+}
+
+.radio-inner-size {
+  width: 10px !important;
+  height: 10px !important;
+}

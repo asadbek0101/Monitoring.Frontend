@@ -1,0 +1,52 @@
+.table-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+}
+
+table {
+  max-width: none;
+  table-layout: fixed;
+  width: 100%;
+
+  thead {
+    position: sticky;
+    top: -8px;
+    z-index: 1;
+
+    th {
+      font-weight: bold !important;
+      height: 60px;
+      text-align: center;
+    }
+  }
+
+  tbody {
+    td {
+      text-align: center;
+    }
+  }
+}
+
+.table-notifications {
+  width: 100%;
+  height: calc(100% - 60px);
+}
+
+.resizer {
+  display: inline-block;
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(50%);
+  z-index: 1;
+  touch-action: none;
+}
+
+.table-sort-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,53 @@
+.select-control{
+  height: 38px;
+}
+
+.select-picker {
+  .select-picker__menu {
+    z-index: 10;
+  }
+
+  .select-picker__control {
+    border: none;
+    box-shadow: none;
+    min-height: auto;
+    height: 36px;
+    padding: 0 !important;
+
+    &.select-picker__control--is-disabled {
+
+        background-color: transparent !important;
+
+    }
+
+    .select-picker__value-container {
+      display: flex;
+      align-items: start !important;
+    }
+
+    .select-picker__multi-value{
+      margin: 0 2px !important;
+    }
+
+    .select-picker__indicators {
+      .select-picker__indicator-separator {
+        display: none;
+      }
+      .select-picker__dropdown-indicator {
+        padding: 0;
+      }
+    }
+  }
+
+  &.picker-sm {
+    .select-picker__value-container {
+      height: 28px;
+    }
+  }
+
+  &.picker-lg {
+    .select-picker__value-container {
+      height: 48px;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+.input-control {
+  &.form-control,
+  .form-control {
+    width: 100%;
+    border-radius: 2px;
+    &.with-icon {
+      padding-left: 40px;
+    }
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  &.form-control-lg,
+  .form-control-lg {
+    font-size: 15px;
+    line-height: 15px;
+    height: 50px !important;
+
+    &.with-icon {
+      padding-left: 50px;
+    }
+  }
+
+  &.form-control-sm,
+  .form-control-sm {
+    height: 30px !important;
+
+    &.with-icon {
+      padding-left: 30px;
+    }
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+
+    &.icon-sm {
+      width: 30px;
+      height: 30px;
+    }
+
+    &.icon-lg {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.input-box {
+  position: relative;
+  .eye-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+}

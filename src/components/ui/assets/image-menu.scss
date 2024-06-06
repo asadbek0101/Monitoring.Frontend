@@ -1,0 +1,12 @@
+.image-menu-wrapper{
+    width: 100%;
+    height: 73vh;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    .image-menu-item{
+        background-color: #fff;
+        padding: 10px;
+        margin: 10px 0;
+    }
+}

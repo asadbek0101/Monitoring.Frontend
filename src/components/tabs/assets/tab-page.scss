@@ -1,0 +1,34 @@
+.tab-page-wrapper {
+    width: 100%;
+    height: 100%;
+  
+    .tab-page-header {
+      width: 100%;
+      height: 60px;
+    }
+  
+    .tab-page-body {
+      width: 100%;
+      height: calc(100% - 120px);
+      background-color: #fff;
+      border-radius: 2px;
+      box-shadow: 0 1px 1px 1px rgb(202, 194, 194);
+      overflow: hidden;
+      overflow-y: auto;
+  
+      .tab-page-body-table {
+        width: 80%;
+        height: 100%;
+      }
+  
+      .tab-page-body-sidebar {
+        width: 20%;
+        height: 100%;
+      }
+    }
+  
+    .tab-page-footer {
+      width: 100%;
+      height: 60px;
+    }
+  }

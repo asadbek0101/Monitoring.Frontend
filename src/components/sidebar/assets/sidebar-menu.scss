@@ -1,0 +1,27 @@
+.sidebar-menu {
+  width: 100%;
+  height: 100%;
+
+  .sidebar-menu-header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3e8cbb;
+    background-image: linear-gradient(-45deg, #06376d, #186abf);
+
+    span {
+      color: #fff;
+      font-weight: 500;
+      font-size: 22px;
+    }
+  }
+
+  .sidebar-menu-menu {
+    width: 100%;
+    height: calc(100vh - 50px);
+    // background-color: #333d41;
+    background-image: linear-gradient(-45deg, #06376d, #1f3b58);
+  }
+}

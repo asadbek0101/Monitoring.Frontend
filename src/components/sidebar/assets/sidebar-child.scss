@@ -1,0 +1,23 @@
+.child-item-wrapper{
+    border-left: 2px solid #fff;
+    padding-top: 2px;
+
+    .child-item{
+        cursor: pointer;
+        padding: 8px 0 8px 17px;
+        transition: all ease .5s;
+
+        span{
+            font-size: 13px;
+        }
+
+        &:hover{
+            background-color: #20272A;  
+        }
+    }
+
+    .active-item{
+        background-color: #20272A;
+    }
+    
+}

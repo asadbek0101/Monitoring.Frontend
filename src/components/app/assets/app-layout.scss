@@ -1,0 +1,45 @@
+.app-layout-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+
+  .app-sidebar {
+    width: 300px;
+    height: 100%;
+    transition: all ease 0.5s;
+  }
+
+  .close-app-sidebar-menu {
+    width: 60px;
+    transition: all ease 0.5s;
+  }
+
+  .app-pages {
+    width: calc(100% - 300px);
+    height: 100%;
+    transition: all ease 0.5s;
+
+    .app-pages-header {
+      width: 100%;
+      height: 50px;
+    }
+
+    .app-pages-page {
+      width: 100%;
+      height: calc(100vh - 50px);
+      overflow: hidden;
+      overflow-y: scroll;
+      background-color: #ebf0f5;
+    }
+  }
+
+  .full-app-pages {
+    width: calc(100% - 60px);
+    transition: all ease 0.5s;
+  }
+}
+
+.admin-pages {
+  width: 100% !important;
+}

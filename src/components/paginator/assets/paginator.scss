@@ -1,0 +1,33 @@
+.paginator-wrapper{
+    display: flex;
+    gap: 20px;
+    
+    .paginator-select{
+        width: 60px;
+        height: 30px;
+        outline: none;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 0 1px 1px 1px rgb(202, 194, 194);
+        cursor: pointer;
+    }
+
+    .button-group{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border: none;
+            color: black;
+            border-radius: 2px;
+            box-shadow: 0 1px 1px 1px rgb(202, 194, 194);
+        }
+    }
+}

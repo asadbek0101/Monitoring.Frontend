@@ -1,0 +1,12 @@
+.menu-button{
+    height: 100%;
+    padding: 0 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all ease .6s;
+
+    &:hover{
+        background-image: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .2));
+    }
+}
