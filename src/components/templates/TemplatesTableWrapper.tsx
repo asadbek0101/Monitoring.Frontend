@@ -22,7 +22,6 @@ interface Props {
 }
 
 export default function TemplatesTableWrapper({ filter }: Props) {
-  const [searchValue, setSearchValue] = useState("");
   const [data, setData] = useState<any>({});
   const [deleteDocuments, setDeleteDocuments] = useState<number[]>();
   const [loading, setLoading] = useState(false);
@@ -33,10 +32,14 @@ export default function TemplatesTableWrapper({ filter }: Props) {
   const locationHelpers = useLocationHelpers();
 
   useEffect(() => {
-    TemplatesApi.getAllTemplates({})
-      .then((r: any) => setData(r?.data))
+    setLoading(true);
+    TemplatesApi.getAllTemplates(filter.getTemplateFilter())
+      .then((r: any) => {
+        setData(r?.data);
+        setLoading(false);
+      })
       .catch(showError);
-  }, [TemplatesApi, searchValue]);
+  }, [TemplatesApi, filter]);
 
   return (
     <TabPage
@@ -49,15 +52,20 @@ export default function TemplatesTableWrapper({ filter }: Props) {
           >
             Qo'shish
           </Button>
-          <Formik initialValues={{}} onSubmit={noop}>
+          <Formik
+            initialValues={{ searchValue: filter.getTemplateFilter().searchValue }}
+            onSubmit={noop}
+            enableReinitialize={true}
+          >
             {() => (
               <Form className="d-flex gap-3 align-items-center">
                 <InputField
                   name="searchValue"
                   width={300}
                   placeholder="Qidirish..."
-                  value={searchValue}
-                  onChange={(event) => setSearchValue(event.target.value)}
+                  onChange={(event) =>
+                    locationHelpers.pushQuery({ searchValue: event.target.value })
+                  }
                 />
               </Form>
             )}
@@ -83,6 +91,7 @@ export default function TemplatesTableWrapper({ filter }: Props) {
       }
     >
       <TemplatesTable
+        loading={loading}
         data={data?.data}
         edit={(value: any) =>
           locationHelpers.pushQuery({ tab: TempalteFilterTabs.Form, templateId: value })

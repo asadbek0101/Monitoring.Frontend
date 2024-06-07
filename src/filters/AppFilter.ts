@@ -24,9 +24,9 @@ export class AppFilter<TTab> {
     this.tab = initial.tab;
     this.page = toFinite(initial.page) || 1;
     this.totalCount = toFinite(initial.totalCount) || 0;
-    this.perPage = toFinite(initial.perPage) || 25;
+    this.perPage = toFinite(initial.perPage) || 100;
     this.pageCount = toFinite(initial.pageCount) || 1;
-    this.perPageStatement = toFinite(initial.perPageStatement) || 25;
+    this.perPageStatement = toFinite(initial.perPageStatement) || 100;
     this.status = initial.status || "";
   }
 
@@ -54,7 +54,7 @@ export class AppFilter<TTab> {
     return this.perPageStatement;
   }
 
-  public getStatus(){
+  public getStatus() {
     return this.status;
   }
 

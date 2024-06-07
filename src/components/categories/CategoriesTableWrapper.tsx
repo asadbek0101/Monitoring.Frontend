@@ -34,13 +34,13 @@ export default function CategoriesTableWrapper({ filter }: Props) {
 
   useEffect(() => {
     setLoading(true);
-    CategoriesApi.getAllCategories()
+    CategoriesApi.getAllCategories(filter.getCategoryFilter())
       .then((r: any) => {
         setData(r?.data);
         setLoading(false);
       })
       .catch(showError);
-  }, [CategoriesApi]);
+  }, [CategoriesApi, filter]);
 
   return (
     <TabPage
@@ -53,15 +53,20 @@ export default function CategoriesTableWrapper({ filter }: Props) {
           >
             Qo'shish
           </Button>
-          <Formik initialValues={{}} onSubmit={noop}>
+          <Formik
+            initialValues={{ searchValue: filter.getCategoryFilter().searchValue }}
+            onSubmit={noop}
+            enableReinitialize={true}
+          >
             {() => (
               <Form className="d-flex gap-3 align-items-center">
                 <InputField
                   name="searchValue"
                   width={300}
                   placeholder="Qidirish..."
-                  value={searchValue}
-                  onChange={(event) => setSearchValue(event.target.value)}
+                  onChange={(event) =>
+                    locationHelpers.pushQuery({ searchValue: event.target.value })
+                  }
                 />
               </Form>
             )}

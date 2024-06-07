@@ -30,6 +30,8 @@ export class UserFilter extends AppFilter<UserFilterTabs> {
     return {
       roleValue: this.roleValue,
       searchValue: this.searchValue,
+      pageNumber: this.pageCount,
+      pageSize: this.perPage,
     };
   }
 }

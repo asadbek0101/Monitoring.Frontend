@@ -7,16 +7,15 @@ import { DELETE, update } from "immupdate";
 import { Action } from "redux";
 
 export const authReducerPersistConfig: Partial<PersistConfig<AuthReducerState>> = {
-  whitelist: [
-    "token",
-  ],
+  whitelist: ["token"],
 };
 
-export interface Profile{
+export interface Profile {
   readonly Id: string;
   readonly email: string;
   readonly name: string;
   readonly role: string;
+  readonly RoleName: string;
 }
 
 interface SetTokenMeta {
@@ -34,7 +33,7 @@ export interface AuthReducerState {
 
 function getState(): AuthReducerState {
   return {
-    token: ""
+    token: "",
   };
 }
 
@@ -45,10 +44,7 @@ export const authReducer = createRootReducer<AuthReducerState>(
     update(state, { token: meta.token }),
   ),
 
-  createReducer([ReducerActions.ResetToken], (state) =>
-  update(state, { token: DELETE }),
-),
-
+  createReducer([ReducerActions.ResetToken], (state) => update(state, { token: DELETE })),
 );
 
 // ==================
@@ -60,11 +56,11 @@ export function tokenSelector(state: AppStoreState): string | undefined {
 }
 
 export function profileSelector(state: AppStoreState): Profile | undefined {
-  if(state.auth.token){
+  if (state.auth.token) {
     const profile: Profile = jwtDecode(state?.auth?.token);
     return profile;
   }
-  return 
+  return;
 }
 
 // ==================
@@ -76,6 +72,5 @@ export function setToken(meta: SetTokenMeta): PerformAction<SetTokenMeta> {
 }
 
 export function resetToken(): Action {
-    return { type: ReducerActions.ResetToken };
-  }
-
+  return { type: ReducerActions.ResetToken };
+}

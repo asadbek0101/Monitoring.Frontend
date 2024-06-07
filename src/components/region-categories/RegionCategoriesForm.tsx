@@ -64,12 +64,12 @@ export default function RegionCategoriesForm({
         <Form>
           <div className="row p-4">
             <div className="col-6">
-              <GroupBox>
+              <GroupBox title="Hudud uchun loyiha qo'shish">
                 <div className="row">
                   <div className="col-12">
                     <SelectPickerField
                       name="regionId"
-                      label="Hudud"
+                      label="Hudud nomi"
                       options={regions}
                       disabled={isDisabled}
                       onChanges={onChangeRegionId}
@@ -78,7 +78,7 @@ export default function RegionCategoriesForm({
                   <div className="col-12 mt-3">
                     <SelectPickerField
                       name="categoryId"
-                      label="Buyruq toifasi"
+                      label="Loyiha nomi"
                       options={categories}
                       disabled={isDisabled}
                       onChanges={onChangeCategoryId}
@@ -86,7 +86,7 @@ export default function RegionCategoriesForm({
                   </div>
                   <div className="col-12 mt-3">
                     <TextAreaField
-                      label="Izoh..."
+                      label="Qo'shimcha ma'lumot"
                       name="_comment"
                       onChange={onChangeComment}
                       defaultValue={initialValues.comment}

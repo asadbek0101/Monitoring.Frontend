@@ -3,16 +3,15 @@ import { useI18n } from "../../i18n/I18nContext";
 import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
 import { Profile, profileSelector } from "../../reducers/authReducer";
 import { appMenuTypeSelector } from "../../reducers/appReducer";
-import { AppMenuType } from "../../api/AppDto";
+import { AppMenuType, UserRoles } from "../../api/AppDto";
+import { CheckRole } from "../../utils/CheckRole";
 import { useNavigate } from "react-router-dom";
 
-import MyLinksIcon from "../icons/MyLinksIcon";
 import SidebarItem from "./SidebarItem";
 import UsersIcon from "../icons/UsersIcon";
 import ProductsIcon from "../icons/ProductsIcon";
 import DashboardIcon from "../icons/DashboardIcon";
 import FlagIcon from "../icons/FlagIcon";
-import CameraIcon from "../icons/CameraIcon";
 
 export default function SidebarMenu() {
   const { translate } = useI18n();
@@ -33,7 +32,7 @@ export default function SidebarMenu() {
             }}
             onClick={() => navigate("/dashboard/statistic")}
           >
-            {profile?.role}
+            {profile?.RoleName}
           </span>
         )}
       </div>
@@ -42,20 +41,22 @@ export default function SidebarMenu() {
           {translate("Statistika")}
         </SidebarItem>
         <SidebarItem link="todos" icon={<FlagIcon />}>
-          {translate("Buyruqlar")}
-        </SidebarItem>
-        <SidebarItem link="reg-cate" icon={<FlagIcon />}>
-          {translate("Buyruq toifalar hududlar uchun")}
+          {translate("Tadbirlar")}
         </SidebarItem>
         <SidebarItem link="categories" icon={<FlagIcon />}>
-          {translate("Buyruq toifalari")}
+          {translate("Loyihalar")}
         </SidebarItem>
         <SidebarItem link="templates" icon={<ProductsIcon />}>
           {translate("Shablonlar")}
         </SidebarItem>
-        <SidebarItem link="users" icon={<UsersIcon />}>
-          {translate("Foydalanuvchilar")}
+        <SidebarItem link="reg-cate" icon={<FlagIcon />}>
+          {translate("Loyihalar hududlar uchun")}
         </SidebarItem>
+        {CheckRole(UserRoles.Programmer, profile) && (
+          <SidebarItem link="users" icon={<UsersIcon />}>
+            {translate("Foydalanuvchilar")}
+          </SidebarItem>
+        )}
       </div>
     </div>
   );

@@ -21,9 +21,9 @@ export default function CategoriesTable({ loading, data = [], edit, selectIds }:
         width: 50,
       },
       {
-        Header: "Toifa nomi",
+        Header: "Loyiha nomi",
         accessor: "name",
-        width: 400,
+        width: 360,
       },
       {
         Header: "Qo'shimcha ma'lumot",
@@ -45,12 +45,12 @@ export default function CategoriesTable({ loading, data = [], edit, selectIds }:
       },
       {
         Header: "Tomonidan yaratilgan",
-        accessor: "createdBy",
+        accessor: "creator",
         width: 200,
       },
       {
         Header: "Tomonidan yangilangan",
-        accessor: "updatedBy",
+        accessor: "updator",
         width: 200,
       },
       {

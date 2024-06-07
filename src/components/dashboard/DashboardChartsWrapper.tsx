@@ -138,7 +138,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
         show={modal}
         closeHandler={() => setModal(false)}
         className="d-flex justify-content-center align-items-center"
-        width="60%"
+        width="70%"
         height="700px"
         contentClassName="d-flex justify-content-center align-items-center p-3 flex-column"
       >

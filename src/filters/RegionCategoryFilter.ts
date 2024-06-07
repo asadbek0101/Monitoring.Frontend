@@ -39,6 +39,8 @@ export class RegionCategoryFilter extends AppFilter<RegionCategoryFilterTabs> {
       regionId: this.regionId,
       categoryId: this.categoryId,
       searchValue: this.searchValue,
+      pageSize: this.perPage,
+      pageNumber: this.pageCount,
     };
   }
 

@@ -47,15 +47,18 @@ export default function RegionCategoriesTable({ data = [], edit, selectIds, load
         Header: "Yangilangan vaqti",
         accessor: "updatedDate",
         width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+        },
       },
       {
         Header: "Tomonidan yaratilgan",
-        accessor: "createdBy",
+        accessor: "creator",
         width: 200,
       },
       {
         Header: "Tomonidan yangilangan",
-        accessor: "updatedBy",
+        accessor: "updator",
         width: 200,
       },
       {

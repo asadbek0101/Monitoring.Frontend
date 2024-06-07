@@ -40,7 +40,6 @@ export default function Table({ columns, data = [], loading, selectRowCheckbox }
     (value: any) => {
       let arr = value.map((item: any) => {
         if (item.isChecked) {
-          console.log(item?.values);
           return item?.values?.id;
         }
       });

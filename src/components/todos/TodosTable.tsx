@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import Table from "../table/Table";
 import Button, { BgColors } from "../ui/Button";
 import PencilIcon from "../icons/PencilIcon";
+import moment from "moment";
 
 interface Props {
   readonly loading: boolean;
@@ -25,12 +26,12 @@ export default function TodosTable({ data = [], edit, selectIds, loading }: Prop
         width: 200,
       },
       {
-        Header: "Buyruq toifasi",
+        Header: "Loyiha nomi",
         accessor: "category",
         width: 300,
       },
       {
-        Header: "Buyruq nomi",
+        Header: "Tadbir nomi",
         accessor: "name",
         width: 400,
       },
@@ -60,29 +61,32 @@ export default function TodosTable({ data = [], edit, selectIds, loading }: Prop
         accessor: "info",
         width: 200,
       },
-      // {
-      //     Header: "Yaratilgan vaqti",
-      //     accessor: "createdDate",
-      //     width: 200,
-      //     Cell: (row: any) => {
-      //         return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>
-      //     }
-      // },
-      // {
-      //     Header: "Yangilangan vaqti",
-      //     accessor: "updatedDate",
-      //     width: 200
-      // },
-      // {
-      //     Header: "Tomonidan yaratilgan",
-      //     accessor: "createdBy",
-      //     width: 200
-      // },
-      // {
-      //     Header: "Tomonidan yangilangan",
-      //     accessor: "updatedBy",
-      //     width: 200
-      // },
+      {
+        Header: "Yaratilgan vaqti",
+        accessor: "createdDate",
+        width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+        },
+      },
+      {
+        Header: "Yangilangan vaqti",
+        accessor: "updatedDate",
+        width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+        },
+      },
+      {
+        Header: "Tomonidan yaratilgan",
+        accessor: "creator",
+        width: 200,
+      },
+      {
+        Header: "Tomonidan yangilangan",
+        accessor: "updator",
+        width: 200,
+      },
       {
         Header: "...",
         accessor: "actions",

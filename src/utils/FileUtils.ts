@@ -1,6 +1,7 @@
-import * as XLSX from 'xlsx'
+import * as XLSX from "xlsx";
 
 import * as PapaParse from "papaparse";
+import { toast } from "react-toastify";
 
 export function formatTableDataToExcelData(titles: string[], data: any[]): any[][] {
   return data
@@ -71,8 +72,7 @@ export function readXlsx(file: File) {
           resolve(xlObject);
         });
       } catch (e: any) {
-
-        console.log(e.message);
+        toast.error(e.message);
       }
     };
 

@@ -1,4 +1,3 @@
-import { noop } from "lodash";
 import { useMemo } from "react";
 import Table from "../table/Table";
 import moment from "moment";
@@ -6,12 +5,13 @@ import Button, { BgColors } from "../ui/Button";
 import PencilIcon from "../icons/PencilIcon";
 
 interface Props {
+  readonly loading: boolean;
   readonly data: any[];
   readonly edit: (value: any) => void;
   readonly selectIds: (value: any) => void;
 }
 
-export default function TemplatesTable({ data = [], edit, selectIds }: Props) {
+export default function TemplatesTable({ data = [], edit, selectIds, loading }: Props) {
   const column = useMemo(
     () => [
       {
@@ -22,7 +22,7 @@ export default function TemplatesTable({ data = [], edit, selectIds }: Props) {
       {
         Header: "Toifa nomi",
         accessor: "name",
-        width: 400,
+        width: 360,
       },
       {
         Header: "Qo'shimcha ma'lumot",
@@ -41,15 +41,18 @@ export default function TemplatesTable({ data = [], edit, selectIds }: Props) {
         Header: "Yangilangan vaqti",
         accessor: "updatedDate",
         width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+        },
       },
       {
         Header: "Tomonidan yaratilgan",
-        accessor: "createdBy",
+        accessor: "creator",
         width: 200,
       },
       {
         Header: "Tomonidan yangilangan",
-        accessor: "updatedBy",
+        accessor: "updator",
         width: 200,
       },
       {
@@ -75,5 +78,5 @@ export default function TemplatesTable({ data = [], edit, selectIds }: Props) {
     [],
   );
 
-  return <Table columns={column} data={data} selectRowCheckbox={selectIds} />;
+  return <Table columns={column} data={data} selectRowCheckbox={selectIds} loading={loading} />;
 }

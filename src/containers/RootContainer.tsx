@@ -38,27 +38,30 @@ export default function RootContainer() {
     <Routes>
       {isAuthorized && (
         <Route path="/dashboard" element={<AppContainer />}>
-          {CheckRole(UserRoles.DepartmentHead, profile) ||
-            (CheckRole(UserRoles.Programmer, profile) && (
-              <Route path="todos/:tab?" element={<TodosContainer />} />
-            ))}
+          {(CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile)) && (
+            <Route path="todos/:tab?" element={<TodosContainer />} />
+          )}
           <Route path="statistic/:tab?" element={<DashboardContainer />} />
-          {CheckRole(UserRoles.DepartmentHead, profile) ||
-            (CheckRole(UserRoles.Programmer, profile) && (
-              <Route path="categories/:tab?" element={<CategoriesContainer />} />
-            ))}
-          {CheckRole(UserRoles.DepartmentHead, profile) ||
-            (CheckRole(UserRoles.Programmer, profile) && (
-              <Route path="reg-cate/:tab?" element={<RegionCategoriesContainer />} />
-            ))}
-          {CheckRole(UserRoles.DepartmentHead, profile) ||
-            (CheckRole(UserRoles.Programmer, profile) && (
-              <Route path="templates/:tab?" element={<TemplatesContainer />} />
-            ))}
-          {CheckRole(UserRoles.DepartmentHead, profile) ||
-            (CheckRole(UserRoles.Programmer, profile) && (
-              <Route path="users/:tab?" element={<UsersContainer />} />
-            ))}
+          {(CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile)) && (
+            <Route path="categories/:tab?" element={<CategoriesContainer />} />
+          )}
+          {(CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile)) && (
+            <Route path="reg-cate/:tab?" element={<RegionCategoriesContainer />} />
+          )}
+          {(CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile)) && (
+            <Route path="templates/:tab?" element={<TemplatesContainer />} />
+          )}
+          {CheckRole(UserRoles.Programmer, profile) && (
+            <Route path="users/:tab?" element={<UsersContainer />} />
+          )}
           <Route path="*" element={<NotFoundContainer />} />
         </Route>
       )}

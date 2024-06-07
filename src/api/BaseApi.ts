@@ -55,7 +55,7 @@ export class BaseApi {
   }
 
   private createRequestUrl(url: string, query = {}, params = {}): string {
-    const formattedUrl =  pathParams(url, params);
+    const formattedUrl = pathParams(url, params);
 
     return [formattedUrl, this.queryToString(query)].filter(Boolean).join("?");
   }
@@ -67,6 +67,10 @@ export class BaseApi {
 
     if (this.language) {
       headers.set("lang", this.language);
+    }
+
+    if (this.userId) {
+      headers.set("userId", this.userId);
     }
 
     if (this.token) {

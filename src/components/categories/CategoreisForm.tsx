@@ -36,12 +36,12 @@ export default function CategoriesForm({ initialValues, setInitialValues, onSubm
                 <Form>
                     <div className="row p-4">
                         <div className="col-6">
-                            <GroupBox title="Buyruq toifa yaratish">
+                            <GroupBox title="Loyiha yaratish">
                                 <div className="row">
                                     <div className="col-12">
                                     <InputField
                                         name="name"
-                                        label="Nomi" 
+                                        label="Loyiha nomi" 
                                         onChange={onChangeName}
                                         value={initialValues.name}
                                         className="my-2" />

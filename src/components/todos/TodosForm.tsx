@@ -136,21 +136,20 @@ export default function TodosForm({
     [setInitialValues, initialValues.inPlan],
   );
 
-  console.log(todoId);
-
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} enableReinitialize={true}>
       {() => (
         <Form>
           <div className="row p-4">
             <div className="col-12">
-              <GroupBox title="Buyruq yaratish">
+              <GroupBox title="Tadbir yaratish">
                 <div className="row">
                   <div className="col-4">
                     <SelectPickerField
                       name="regionId"
                       options={regions}
-                      label="Hudud"
+                      label="Hudud nomi"
+                      isSearchable
                       disabled={todoId !== 0}
                       onChanges={onChangeRegionId}
                     />
@@ -159,7 +158,8 @@ export default function TodosForm({
                     <SelectPickerField
                       name="categoryId"
                       options={categories}
-                      label="Buyruq toifasi"
+                      label="Loyiha nomi"
+                      isSearchable
                       disabled={todoId !== 0}
                       onChanges={onChangeCategoryId}
                     />
@@ -168,7 +168,8 @@ export default function TodosForm({
                     <SelectPickerField
                       name="templateId"
                       options={templates}
-                      label="Buyruq matni"
+                      label="Tadbir nomi"
+                      isSearchable
                       disabled={todoId !== 0}
                       onChanges={onChangeTemplateId}
                     />

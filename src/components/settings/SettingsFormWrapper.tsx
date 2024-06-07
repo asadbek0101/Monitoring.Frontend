@@ -10,66 +10,65 @@ import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
 import { Profile, profileSelector } from "../../reducers/authReducer";
 import { update } from "immupdate";
 
-export default function SettingsFormWrapper(){
+export default function SettingsFormWrapper() {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
+  const [initialValues, setInitialValues] = useState({
+    userEmail: "",
+    userName: "",
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
 
-    const [initialValues, setInitialValues] = useState({
-        userEmail: "",
-        userName: "",
-        oldPassword: "",
-        newPassword: "",
-        confirmPassword: "",
-    });
+  const [languageModal, setLanguageModal] = useState(false);
+  const [language, setLanguage] = useState<AppLanguage>(AppLanguage.English);
 
-    const [languageModal, setLanguageModal] = useState(false);
-    const [language, setLanguage] = useState<AppLanguage>(AppLanguage.English);
+  const profile: Profile | undefined = useShallowEqualSelector(profileSelector);
 
-    const profile: Profile | undefined = useShallowEqualSelector(profileSelector);
+  useEffect(() => {
+    setInitialValues((prev: any) =>
+      update(prev, {
+        userEmail: profile?.email,
+        userName: profile?.name,
+      }),
+    );
+  }, [profile]);
 
-    useEffect(()=>{
-        setInitialValues((prev: any)=>update(prev, {
-            userEmail: profile?.email,
-            userName: profile?.name,
-        }))
-    },[profile])
+  const savePassword = useCallback((value: any) => {}, []);
 
-    const savePassword = useCallback((value: any)=>{
-        console.log(value)
-    },[])
-
-    return (
-        <>
-            <SettingsForm
-                initialValues={initialValues}
-                setInitialValues={setInitialValues}
-                saveLanguage={(value)=>{
-                    setLanguage(value);
-                    setLanguageModal(true);
-                }}
-                savePassword={savePassword}
-                />
-             <Modal 
-                show={languageModal} 
-                closeHandler={()=>setLanguageModal(false)}
-                className="d-flex justify-content-center align-items-center"
-                contentClassName="rounded p-4"
-                width="500px"
-                >
-               <GroupBox>
-               <YesOrNoModal 
-                    title="SETTINGS_FORM_LANGUAGE_QUESTION_TITLE"
-                    setResponse={(value: string)=>{
-                        if(value === "YES"){
-                            dispatch(switchLanguage({ language: language }));
-                            setLanguageModal(false)
-                        }else{
-                            setLanguageModal(false)
-                        }
-                     }}
-                    />
-               </GroupBox>
-            </Modal>
-        </>
-    )
+  return (
+    <>
+      <SettingsForm
+        initialValues={initialValues}
+        setInitialValues={setInitialValues}
+        saveLanguage={(value) => {
+          setLanguage(value);
+          setLanguageModal(true);
+        }}
+        savePassword={savePassword}
+      />
+      <Modal
+        show={languageModal}
+        closeHandler={() => setLanguageModal(false)}
+        className="d-flex justify-content-center align-items-center"
+        contentClassName="rounded p-4"
+        width="500px"
+      >
+        <GroupBox>
+          <YesOrNoModal
+            title="SETTINGS_FORM_LANGUAGE_QUESTION_TITLE"
+            setResponse={(value: string) => {
+              if (value === "YES") {
+                dispatch(switchLanguage({ language: language }));
+                setLanguageModal(false);
+              } else {
+                setLanguageModal(false);
+              }
+            }}
+          />
+        </GroupBox>
+      </Modal>
+    </>
+  );
 }

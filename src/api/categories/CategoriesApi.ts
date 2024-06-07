@@ -1,8 +1,10 @@
 import { BaseApi } from "../BaseApi";
 
 export class CategoriesApi extends BaseApi {
-  public getAllCategories(): Promise<any[]> {
-    return this.get("Categories/GetAll");
+  public getAllCategories(query: any): Promise<any[]> {
+    return this.get("Categories/GetAll", {
+      query,
+    });
   }
 
   public getOneCategory(query: any): Promise<any> {
