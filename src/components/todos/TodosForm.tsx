@@ -16,6 +16,8 @@ interface Props {
   readonly templates: SelectBoxProps[];
   readonly initialValues: TodoInitialProps;
   readonly setInitialValues: (value: any) => void;
+  readonly onChangeRegionId: (value: any) => void;
+  readonly onChangeCategoryId: (value: any) => void;
   readonly onSubmit: (value: any) => void;
 }
 
@@ -26,30 +28,10 @@ export default function TodosForm({
   templates,
   initialValues,
   setInitialValues,
+  onChangeRegionId,
+  onChangeCategoryId,
   onSubmit,
 }: Props) {
-  const onChangeRegionId = useCallback(
-    (event: any) => {
-      setInitialValues((prev: any) =>
-        update(prev, {
-          regionId: event,
-        }),
-      );
-    },
-    [setInitialValues],
-  );
-
-  const onChangeCategoryId = useCallback(
-    (event: any) => {
-      setInitialValues((prev: any) =>
-        update(prev, {
-          categoryId: event,
-        }),
-      );
-    },
-    [setInitialValues],
-  );
-
   const onChangeTemplateId = useCallback(
     (event: any) => {
       setInitialValues((prev: any) =>

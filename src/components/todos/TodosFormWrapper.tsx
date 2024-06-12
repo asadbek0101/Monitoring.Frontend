@@ -13,6 +13,7 @@ import TabPage from "../tabs/TabPage";
 import TodosForm from "./TodosForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
+import { update } from "immupdate";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -79,36 +80,58 @@ export default function TodosFormWrapper({ filter }: Props) {
     });
   }, [RegionsApi]);
 
-  useEffect(() => {
-    CategoriesApi.getCategoriesList({
-      regionId: Number(initialValues.regionId.value) || 0,
-      type: "todo",
-    }).then((r: any) => {
-      const _categories = r?.data?.map((re: any) => {
-        return {
-          label: re.name,
-          value: re.id,
-        };
+  const onChangeRegionId = useCallback(
+    (event: any) => {
+      CategoriesApi.getCategoriesList({
+        regionId: Number(event.value) || 0,
+        type: "todo",
+      }).then((r: any) => {
+        const _categories = r?.data?.map((re: any) => {
+          return {
+            label: re.name,
+            value: re.id,
+          };
+        });
+
+        setCategories(_categories);
       });
 
-      setCategories(_categories);
-    });
-  }, [CategoriesApi, initialValues.regionId]);
+      setInitialValues((prev: any) =>
+        update(prev, {
+          regionId: event,
+          categoryId: {},
+          templateId: {},
+        }),
+      );
+      setTemplates([]);
+    },
+    [setInitialValues, CategoriesApi],
+  );
 
-  useEffect(() => {
-    TemplatesApi.getTemplatesList({
-      categoryId: Number(initialValues.categoryId.value) || 0,
-      regionId: Number(initialValues.regionId.value) || 0,
-    }).then((r: any) => {
-      const _templates = r?.data?.map((re: any) => {
-        return {
-          label: re.name,
-          value: re.id,
-        };
+  const onChangeCategoryId = useCallback(
+    (event: any) => {
+      TemplatesApi.getTemplatesList({
+        categoryId: Number(event.value) || 0,
+        regionId: Number(initialValues.regionId.value) || 0,
+      }).then((r: any) => {
+        const _templates = r?.data?.map((re: any) => {
+          return {
+            label: re.name,
+            value: re.id,
+          };
+        });
+        setTemplates(_templates);
       });
-      setTemplates(_templates);
-    });
-  }, [TemplatesApi, initialValues.categoryId, initialValues.regionId]);
+
+      setInitialValues((prev: any) =>
+        update(prev, {
+          categoryId: event,
+          templateId: {},
+        }),
+      );
+    },
+    [setInitialValues, TemplatesApi, initialValues.regionId],
+  );
 
   const onSubmit = useCallback(
     (value: any) => {
@@ -171,6 +194,8 @@ export default function TodosFormWrapper({ filter }: Props) {
         templates={templates}
         initialValues={initialValues}
         setInitialValues={setInitialValues}
+        onChangeRegionId={onChangeRegionId}
+        onChangeCategoryId={onChangeCategoryId}
         onSubmit={onSubmit}
       />
     </TabPage>

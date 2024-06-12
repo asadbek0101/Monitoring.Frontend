@@ -30,7 +30,7 @@ export default function Chart({
   labels = [],
   comment = "Resbuplika bo'yicha...",
   title = "Lorem ipsum....",
-  setChart
+  setChart,
 }: Props) {
   const [sortMethodType, setSortMethodType] = useState<"upper" | "lower">("upper");
 
@@ -45,12 +45,8 @@ export default function Chart({
           <div className="chart-header d-flex align-items-center justify-content-between">
             <span className="chart-header-title">{title}</span>
             <div className="sort-button-group d-flex gap-2">
-              <Button
-                className="px-3 py-1"
-                onClick={() => setChart(id)}
-                bgColor={"green"}
-              >
-                <EyeIcon/>
+              <Button className="px-3 py-1" onClick={() => setChart(id)} bgColor={"green"}>
+                <EyeIcon />
               </Button>
               <Button
                 onClick={() => setSortMethodType("lower")}
@@ -106,7 +102,7 @@ export default function Chart({
                 fontWeight: "bold",
               }}
             >
-              Buyruq
+              Tadbirlar
             </span>
           </div>
           {data &&

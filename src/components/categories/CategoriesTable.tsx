@@ -42,6 +42,9 @@ export default function CategoriesTable({ loading, data = [], edit, selectIds }:
         Header: "Yangilangan vaqti",
         accessor: "updatedDate",
         width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+        },
       },
       {
         Header: "Tomonidan yaratilgan",

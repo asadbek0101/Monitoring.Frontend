@@ -137,12 +137,12 @@ export default function DashboardChartsWrapper({ filter }: Props) {
       <Modal
         show={modal}
         closeHandler={() => setModal(false)}
-        className="d-flex justify-content-center align-items-center"
+        className="d-flex justify-content-center align-items-center "
         width="70%"
         height="700px"
-        contentClassName="d-flex justify-content-center align-items-center p-3 flex-column"
+        contentClassName="d-flex justify-content-center align-items-center p-3 flex-column "
       >
-        <GroupBox className="h-100">
+        <GroupBox className="h-100 overflow-auto">
           <h5 className="py-2">
             {getRegion(regionId)?.label} - {modalData?.name}
           </h5>
