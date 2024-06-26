@@ -7,7 +7,11 @@ import { useCallback } from "react";
 import { update } from "immupdate";
 import { InputField } from "../form/InputField";
 import { TextAreaField } from "../form/TextAreaField";
+import axios from "axios";
 import Button, { BgColors } from "../ui/Button";
+import FileUpload from "../ui/FileUpload";
+import { toast } from "react-toastify";
+import { showError } from "../../utils/NotificationUtils";
 
 interface Props {
   readonly todoId: string | number;
@@ -65,6 +69,17 @@ export default function TodosForm({
       }
     },
     [setInitialValues, initialValues.inPlan],
+  );
+
+  const onChangeFile = useCallback(
+    (event: any) => {
+      setInitialValues((prev: any) =>
+        update(prev, {
+          file: event.target.files[0],
+        }),
+      );
+    },
+    [setInitialValues],
   );
 
   const onChangeComment = useCallback(
@@ -182,6 +197,9 @@ export default function TodosForm({
                       onChange={onChangeInPlan}
                       disabled
                     />
+                  </div>
+                  <div className="col-4 mt-4">
+                    <FileUpload setFiles={(value) => onChangeFile(value)} title="File yuklash" />
                   </div>
                   <div className="col-12 mt-3">
                     <TextAreaField

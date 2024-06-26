@@ -14,6 +14,7 @@ import TodosForm from "./TodosForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
 import { update } from "immupdate";
+import axios from "axios";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -28,6 +29,7 @@ export default function TodosFormWrapper({ filter }: Props) {
     inPlan: "",
     inProcess: "",
     comment: "",
+    file: "",
   });
 
   const [categories, setCategories] = useState<{ label: string; value: number }[]>([]);
@@ -152,19 +154,49 @@ export default function TodosFormWrapper({ filter }: Props) {
             })
             .catch(showError);
         } else {
-          const json = {
-            ...value,
-            regionId: value?.regionId?.value,
-            templateId: value?.templateId?.value,
-            categoryId: value?.categoryId?.value,
-          };
+          if (value.file) {
+            const url = `http://172.24.201.4:1000/api/Object/test`;
+            const formData = new FormData();
+            formData.append("File", value.file);
+            const config = {
+              headers: {
+                "content-type": "multipart/form-data",
+              },
+            };
+            axios
+              .post(url, formData, config)
+              .then((response: any) => {
+                const json = {
+                  ...value,
+                  regionId: value?.regionId?.value,
+                  templateId: value?.templateId?.value,
+                  categoryId: value?.categoryId?.value,
+                  fileName: response?.data?.fileName,
+                };
 
-          TodosApi.createTodo(json)
-            .then((r) => {
-              toast.success(r?.message);
-              navigate("/dashboard/todos/table");
-            })
-            .catch(showError);
+                TodosApi.createTodo(json)
+                  .then((r) => {
+                    toast.success(r?.message);
+                    navigate("/dashboard/todos/table");
+                  })
+                  .catch(showError);
+              })
+              .catch(showError);
+          } else {
+            const json = {
+              ...value,
+              regionId: value?.regionId?.value,
+              templateId: value?.templateId?.value,
+              categoryId: value?.categoryId?.value,
+            };
+
+            TodosApi.createTodo(json)
+              .then((r) => {
+                toast.success(r?.message);
+                navigate("/dashboard/todos/table");
+              })
+              .catch(showError);
+          }
         }
       } else {
         toast.error("Plan must be high than Process");

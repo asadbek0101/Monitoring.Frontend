@@ -25,7 +25,6 @@ export default function CategoriesTableWrapper({ filter }: Props) {
   const [data, setData] = useState<any>({});
   const [deleteDocuments, setDeleteDocuments] = useState<number[]>();
   const [loading, setLoading] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
   const [deleteModal, setDeleteModal] = useState(false);
 
   const { CategoriesApi } = useCategoriesApiContext();

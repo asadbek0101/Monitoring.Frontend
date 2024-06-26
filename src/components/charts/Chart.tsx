@@ -6,6 +6,7 @@ import { colors } from "../../constants/Colors";
 import ChartItem from "./ChartItem";
 import Button, { BgColors } from "../ui/Button";
 import EyeIcon from "../icons/EyeIcon";
+import ChartCircle from "./ChartCircle";
 
 export interface ChartItemProps {
   readonly id: number;
@@ -38,6 +39,22 @@ export default function Chart({
     return null;
   }
 
+  const getValueForCircleChart = (array: any[]) => {
+    if (array.length === 0 || array === null) {
+      return 0;
+    } else {
+      var inPlanSumm = 0,
+        inProcessSumm = 0;
+      for (let i = 0; i < array.length; i++) {
+        inPlanSumm += Number(array[i].inPlan);
+        inProcessSumm += Number(array[i].inProcess);
+      }
+
+      const result = (inProcessSumm * 100) / inPlanSumm;
+      return Number(result.toString().substring(0, 4));
+    }
+  };
+
   return (
     <div className="chart-container">
       <div className="chart-wrapper">
@@ -64,37 +81,42 @@ export default function Chart({
           </div>
         </div>
 
-        <div className="chart-body-wrapper">
-          <div className="chart-line-wrapper">
-            {labels &&
-              labels?.map((label: any, index) => {
-                return (
-                  <div key={index} className="chart-line">
-                    {label}
-                  </div>
-                );
-              })}
-          </div>
-          <div className="chart-item-wrapper">
-            {data &&
-              sortData(data, "inPercentage", sortMethodType)?.map(
-                (chartItem: any, index: number) => {
+        <div className="chart-body-wrapper d-flex">
+          <div className="chart-body">
+            <div className="chart-line-wrapper">
+              {labels &&
+                labels?.map((label: any, index) => {
                   return (
-                    <ChartItem
-                      key={index}
-                      index={index}
-                      width={`${100 / data.length}%`}
-                      heigt={chartItem.inPercentage}
-                      inProcess={chartItem.inProcess}
-                      itemLabel={chartItem.name}
-                    />
+                    <div key={index} className="chart-line">
+                      {label}
+                    </div>
                   );
-                },
-              )}
+                })}
+            </div>
+            <div className="chart-item-wrapper">
+              {data &&
+                sortData(data, "inPercentage", sortMethodType)?.map(
+                  (chartItem: any, index: number) => {
+                    return (
+                      <ChartItem
+                        key={index}
+                        index={index}
+                        width={`${100 / data.length}%`}
+                        heigt={chartItem.inPercentage}
+                        inProcess={chartItem.inProcess}
+                        itemLabel={chartItem.name}
+                      />
+                    );
+                  },
+                )}
+            </div>
+          </div>
+          <div className="chart-circle">
+            <ChartCircle value={getValueForCircleChart(data)} />
           </div>
         </div>
 
-        <div className="chart-item-label-wrapper mt-4">
+        <div className="chart-item-label-wrapper mt-5">
           <div>
             <span
               style={{

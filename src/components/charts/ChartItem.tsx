@@ -16,7 +16,7 @@ export default function ChartItem({ heigt, itemLabel, index, width = "100px", in
       style={{
         height: `${heigt}%`,
         width: `${width}`,
-        maxWidth: "80px",
+        maxWidth: "30px",
         backgroundColor: `${colors[index]}`,
       }}
     >
