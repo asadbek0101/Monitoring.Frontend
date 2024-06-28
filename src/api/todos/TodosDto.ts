@@ -6,5 +6,6 @@ export interface TodoInitialProps {
   readonly inProcess: number | string;
   readonly inPercentage: number | string;
   readonly comment: string;
+  readonly fileName: string;
   readonly file: any;
 }

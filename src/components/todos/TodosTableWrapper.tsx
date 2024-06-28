@@ -19,6 +19,7 @@ import DeleteIcon from "../icons/DeleteIcon";
 import Paginator from "../paginator/Paginator";
 import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
+import axios from "axios";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -98,6 +99,23 @@ export default function TodosTableWrapper({ filter }: Props) {
     [categories],
   );
 
+  const downloadFile = useCallback((fileName: any) => {
+    axios({
+      url: `http://172.24.201.4:1000/api/Object/monitoring?token=${fileName}`,
+      method: "GET",
+      responseType: "blob", // important
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link: any = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `${fileName}`);
+      document.body.appendChild(link);
+      link.click();
+
+      link.parentNode.removeChild(link);
+    });
+  }, []);
+
   return (
     <TabPage
       headerComponent={
@@ -175,6 +193,7 @@ export default function TodosTableWrapper({ filter }: Props) {
         edit={(value: any) =>
           locationHelpers.pushQuery({ tab: TodoFilterTabs.Form, todoId: value })
         }
+        downloadFile={downloadFile}
         selectIds={setDeleteDocuments}
       />
       <Modal

@@ -7,6 +7,12 @@ export class TodosApi extends BaseApi {
     });
   }
 
+  public getAllFileNames(query: any): Promise<any> {
+    return this.get("Todos/GetAllFileNames", {
+      query,
+    });
+  }
+
   public getOneTodo(query: any): Promise<any> {
     return this.get("Todos/GetOne", {
       query,

@@ -199,7 +199,11 @@ export default function TodosForm({
                     />
                   </div>
                   <div className="col-4 mt-4">
-                    <FileUpload setFiles={(value) => onChangeFile(value)} title="File yuklash" />
+                    <FileUpload
+                      setFiles={(value) => onChangeFile(value)}
+                      title="File yuklash"
+                      isThere={Boolean(initialValues.fileName)}
+                    />
                   </div>
                   <div className="col-12 mt-3">
                     <TextAreaField

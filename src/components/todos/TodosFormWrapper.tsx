@@ -29,6 +29,7 @@ export default function TodosFormWrapper({ filter }: Props) {
     inPlan: "",
     inProcess: "",
     comment: "",
+    fileName: "",
     file: "",
   });
 
@@ -139,23 +140,57 @@ export default function TodosFormWrapper({ filter }: Props) {
     (value: any) => {
       if (Number(value.inPlan) >= Number(value.inProcess)) {
         if (todoId) {
-          const json = {
-            ...value,
-            id: todoId,
-            regionId: value?.regionId?.value,
-            templateId: value?.templateId?.value,
-            categoryId: value?.categoryId?.value,
-          };
-
-          TodosApi.updateTodo(json)
-            .then((r) => {
-              toast.success(r?.message);
-              navigate("/dashboard/todos/table");
-            })
-            .catch(showError);
-        } else {
+          // Update
           if (value.file) {
-            const url = `http://172.24.201.4:1000/api/Object/test`;
+            const url = `http://172.24.201.4:1000/api/Object/monitoring`;
+            const formData = new FormData();
+            formData.append("File", value.file);
+            const config = {
+              headers: {
+                "content-type": "multipart/form-data",
+              },
+            };
+            axios
+              .post(url, formData, config)
+              .then((response: any) => {
+                const json = {
+                  ...value,
+                  id: todoId,
+                  regionId: value?.regionId?.value,
+                  templateId: value?.templateId?.value,
+                  categoryId: value?.categoryId?.value,
+                  fileName: response?.data?.filename,
+                };
+
+                TodosApi.updateTodo(json)
+                  .then((r) => {
+                    toast.success(r?.message);
+                    navigate("/dashboard/todos/table");
+                  })
+                  .catch(showError);
+              })
+              .catch(showError);
+          } else {
+            const json = {
+              ...value,
+              id: todoId,
+              regionId: value?.regionId?.value,
+              templateId: value?.templateId?.value,
+              categoryId: value?.categoryId?.value,
+            };
+
+            TodosApi.updateTodo(json)
+              .then((r) => {
+                toast.success(r?.message);
+                navigate("/dashboard/todos/table");
+              })
+              .catch(showError);
+          }
+        } else {
+          // Create
+
+          if (value.file) {
+            const url = `http://172.24.201.4:1000/api/Object/monitoring`;
             const formData = new FormData();
             formData.append("File", value.file);
             const config = {
@@ -171,7 +206,7 @@ export default function TodosFormWrapper({ filter }: Props) {
                   regionId: value?.regionId?.value,
                   templateId: value?.templateId?.value,
                   categoryId: value?.categoryId?.value,
-                  fileName: response?.data?.fileName,
+                  fileName: response?.data?.filename,
                 };
 
                 TodosApi.createTodo(json)

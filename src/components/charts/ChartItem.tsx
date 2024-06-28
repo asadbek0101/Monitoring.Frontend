@@ -16,14 +16,13 @@ export default function ChartItem({ heigt, itemLabel, index, width = "100px", in
       style={{
         height: `${heigt}%`,
         width: `${width}`,
-        maxWidth: "30px",
+        maxWidth: "130px",
         backgroundColor: `${colors[index]}`,
       }}
     >
       <div className="chat-item-title d-flex flex-column justify-content-around h-100">
         <span>{inProcess}</span> <span>{`${heigt}%`}</span>
       </div>
-      {/* <div className="chart-item-label">{itemLabel}</div> */}
     </div>
   );
 }

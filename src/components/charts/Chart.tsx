@@ -7,6 +7,7 @@ import ChartItem from "./ChartItem";
 import Button, { BgColors } from "../ui/Button";
 import EyeIcon from "../icons/EyeIcon";
 import ChartCircle from "./ChartCircle";
+import DonwloadIcon from "../icons/DowloadIcon";
 
 export interface ChartItemProps {
   readonly id: number;
@@ -23,6 +24,7 @@ interface Props {
   readonly title?: string;
   readonly comment?: string;
   readonly setChart: (value: any) => void;
+  readonly downloadFile: (value: any) => void;
 }
 
 export default function Chart({
@@ -32,6 +34,7 @@ export default function Chart({
   comment = "Resbuplika bo'yicha...",
   title = "Lorem ipsum....",
   setChart,
+  downloadFile,
 }: Props) {
   const [sortMethodType, setSortMethodType] = useState<"upper" | "lower">("upper");
 
@@ -146,6 +149,13 @@ export default function Chart({
                   >
                     {chartItem.name}
                   </span>
+                  {chartItem?.fileName && (
+                    <div>
+                      <Button className="p-1" onClick={() => downloadFile(chartItem.templateId)}>
+                        <DonwloadIcon color="green" />
+                      </Button>
+                    </div>
+                  )}
                 </div>
               );
             })}

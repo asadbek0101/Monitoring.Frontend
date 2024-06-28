@@ -12,6 +12,7 @@ import Chart from "../charts/Chart";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
 import Modal from "../ui/Modal";
 import DashboardVIew from "./DashboardView";
+import axios from "axios";
 
 interface Props {
   readonly filter: DashboardFilter;
@@ -92,6 +93,33 @@ export default function DashboardChartsWrapper({ filter }: Props) {
     [data?.categories],
   );
 
+  const downloadFile = useCallback(
+    (categoryId: any, templateId: any) => {
+      TodosApi.getAllFileNames({ categoryId, templateId })
+        .then((r) => {
+          r?.data &&
+            r?.data.map((fileName: string) => {
+              axios({
+                url: `http://172.24.201.4:1000/api/Object/monitoring?token=${fileName}`,
+                method: "GET",
+                responseType: "blob", // important
+              }).then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link: any = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", `${fileName}`);
+                document.body.appendChild(link);
+                link.click();
+
+                link.parentNode.removeChild(link);
+              });
+            });
+        })
+        .catch(showError);
+    },
+    [TodosApi],
+  );
+
   return (
     <div className="row p-4">
       <div className="col-12">
@@ -129,6 +157,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
                   title={category.name}
                   comment={category.comment}
                   setChart={setChartHandler}
+                  downloadFile={(todoId: any) => downloadFile(category?.id, todoId)}
                 />
               </div>
             );

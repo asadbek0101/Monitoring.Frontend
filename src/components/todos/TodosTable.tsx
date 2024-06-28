@@ -4,15 +4,17 @@ import Table from "../table/Table";
 import Button, { BgColors } from "../ui/Button";
 import PencilIcon from "../icons/PencilIcon";
 import moment from "moment";
+import DonwloadIcon from "../icons/DowloadIcon";
 
 interface Props {
   readonly loading: boolean;
   readonly data: any[];
   readonly edit: (value: any) => void;
+  readonly downloadFile: (value: any) => void;
   readonly selectIds: (value: any) => void;
 }
 
-export default function TodosTable({ data = [], edit, selectIds, loading }: Props) {
+export default function TodosTable({ data = [], edit, downloadFile, selectIds, loading }: Props) {
   const column = useMemo(
     () => [
       {
@@ -101,6 +103,15 @@ export default function TodosTable({ data = [], edit, selectIds, loading }: Prop
               >
                 <PencilIcon />
               </Button>
+              {row?.row?.original?.fileName && (
+                <Button
+                  className="text-light p-2"
+                  bgColor={BgColors.Green}
+                  onClick={() => downloadFile(row?.row?.original?.fileName)}
+                >
+                  <DonwloadIcon />
+                </Button>
+              )}
             </div>
           );
         },
