@@ -99,20 +99,22 @@ export default function DashboardChartsWrapper({ filter }: Props) {
         .then((r) => {
           r?.data &&
             r?.data.map((fileName: string) => {
-              axios({
-                url: `http://172.24.201.4:1000/api/Object/monitoring?token=${fileName}`,
-                method: "GET",
-                responseType: "blob", // important
-              }).then((response) => {
-                const url = window.URL.createObjectURL(new Blob([response.data]));
-                const link: any = document.createElement("a");
-                link.href = url;
-                link.setAttribute("download", `${fileName}`);
-                document.body.appendChild(link);
-                link.click();
+              if (fileName !== "" && Boolean(fileName)) {
+                axios({
+                  url: `http://172.24.201.4:1000/api/Object/monitoring?token=${fileName}`,
+                  method: "GET",
+                  responseType: "blob", // important
+                }).then((response) => {
+                  const url = window.URL.createObjectURL(new Blob([response.data]));
+                  const link: any = document.createElement("a");
+                  link.href = url;
+                  link.setAttribute("download", `${fileName}`);
+                  document.body.appendChild(link);
+                  link.click();
 
-                link.parentNode.removeChild(link);
-              });
+                  link.parentNode.removeChild(link);
+                });
+              }
             });
         })
         .catch(showError);
