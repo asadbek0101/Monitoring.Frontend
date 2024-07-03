@@ -125,7 +125,7 @@ export default function Chart({
           <div>
             <span
               style={{
-                fontSize: "14px",
+                fontSize: "20px",
                 fontWeight: "bold",
               }}
             >
@@ -146,8 +146,8 @@ export default function Chart({
                   ></div>
                   <span
                     style={{
-                      fontSize: "14px",
-                      fontWeight: "bold"
+                      fontSize: "17px",
+                      fontWeight: "bold",
                     }}
                   >
                     {chartItem.name}

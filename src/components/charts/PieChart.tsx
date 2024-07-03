@@ -20,7 +20,7 @@ export default function PieChart({ value }: Props) {
         chartArea: {
           width: "100%",
           height: "70%",
-          fontSize: "19px"
+          fontSize: 19,
         },
         legend: {
           position: "bottom",
@@ -30,6 +30,7 @@ export default function PieChart({ value }: Props) {
             fontSize: 16,
           },
         },
+        pieSliceTextStyle: { fontName: "Arial", fontSize: 18 },
         slices: [
           {
             color: "#63b598",
