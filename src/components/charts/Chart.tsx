@@ -8,6 +8,7 @@ import Button, { BgColors } from "../ui/Button";
 import EyeIcon from "../icons/EyeIcon";
 import ChartCircle from "./ChartCircle";
 import DonwloadIcon from "../icons/DowloadIcon";
+import PieChart from "./PieChart";
 
 export interface ChartItemProps {
   readonly id: number;
@@ -63,7 +64,7 @@ export default function Chart({
       <div className="chart-wrapper">
         <div className="chart-header-wrapper py-3">
           <div className="chart-header d-flex align-items-center justify-content-between">
-            <span className="chart-header-title">{title}</span>
+            <span className="chart-header-title fw-bold">{title}</span>
             <div className="sort-button-group d-flex gap-2">
               <Button className="px-3 py-1" onClick={() => setChart(id)} bgColor={"green"}>
                 <EyeIcon />
@@ -115,7 +116,8 @@ export default function Chart({
             </div>
           </div>
           <div className="chart-circle">
-            <ChartCircle value={getValueForCircleChart(data)} />
+            {/* <ChartCircle value={getValueForCircleChart(data)} /> */}
+            <PieChart value={getValueForCircleChart(data)} />
           </div>
         </div>
 
@@ -145,6 +147,7 @@ export default function Chart({
                   <span
                     style={{
                       fontSize: "14px",
+                      fontWeight: "bold"
                     }}
                   >
                     {chartItem.name}

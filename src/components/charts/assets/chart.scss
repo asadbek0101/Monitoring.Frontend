@@ -42,7 +42,7 @@
   position: relative;
 }
 
-.chart-circle{
+.chart-circle {
   width: 30%;
 }
 
@@ -74,7 +74,7 @@
   .chart-item {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: end;
     position: relative;
     z-index: 1;
   }

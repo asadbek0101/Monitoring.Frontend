@@ -10,20 +10,11 @@
     width: 280px;
     height: 280px;
     border-radius: 50%;
-    box-shadow: 3px 4px 2px rgb(173, 169, 169);
+    box-shadow: 8px 6px 10px rgb(173, 169, 169);
     background: conic-gradient(#63b598 0% 20%, #ce7d78 20% 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .circle-cart-line {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      gap: 10px;
-      transform: rotateZ(80deg);
-    }
   }
 
   .chart-circle-labels {
