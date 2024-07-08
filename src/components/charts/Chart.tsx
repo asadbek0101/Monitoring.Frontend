@@ -6,9 +6,9 @@ import { colors } from "../../constants/Colors";
 import ChartItem from "./ChartItem";
 import Button, { BgColors } from "../ui/Button";
 import EyeIcon from "../icons/EyeIcon";
-import ChartCircle from "./ChartCircle";
 import DonwloadIcon from "../icons/DowloadIcon";
 import PieChart from "./PieChart";
+import BoxIcon from "../icons/BoxIcon";
 
 export interface ChartItemProps {
   readonly id: number;
@@ -25,6 +25,7 @@ interface Props {
   readonly title?: string;
   readonly comment?: string;
   readonly setChart: (value: any) => void;
+  readonly setChartForOne: (value: any) => void;
   readonly downloadFile: (value: any) => void;
 }
 
@@ -35,6 +36,7 @@ export default function Chart({
   comment = "Resbuplika bo'yicha...",
   title = "Lorem ipsum....",
   setChart,
+  setChartForOne,
   downloadFile,
 }: Props) {
   const [sortMethodType, setSortMethodType] = useState<"upper" | "lower">("upper");
@@ -68,6 +70,9 @@ export default function Chart({
             <div className="sort-button-group d-flex gap-2">
               <Button className="px-3 py-1" onClick={() => setChart(id)} bgColor={"green"}>
                 <EyeIcon />
+              </Button>
+              <Button className="px-3 py-1" onClick={() => setChartForOne(id)} bgColor={"green"}>
+                <BoxIcon />
               </Button>
               <Button
                 onClick={() => setSortMethodType("lower")}

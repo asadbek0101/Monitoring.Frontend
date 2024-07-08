@@ -13,6 +13,9 @@ import useLocationHelpers from "../../hooks/userLocationHelpers";
 import Modal from "../ui/Modal";
 import DashboardVIew from "./DashboardView";
 import axios from "axios";
+import Button from "../ui/Button";
+import DonwloadIcon from "../icons/DowloadIcon";
+import DashboardPdf from "./DashboardPdf";
 
 interface Props {
   readonly filter: DashboardFilter;
@@ -21,8 +24,21 @@ interface Props {
 export default function DashboardChartsWrapper({ filter }: Props) {
   const [data, setData] = useState<any>({});
   const [modal, setModal] = useState<boolean>(false);
+  const [pdfModal, setPdfModal] = useState<boolean>(false);
+  const [isOneData, setIsOneData] = useState<boolean>(false);
   const [modalData, setModalData] = useState({
     name: "",
+    todos: [],
+  });
+  const [modalPdfData, setModalPdfData] = useState({
+    name: "",
+    todos: [],
+  });
+
+  const [oneData, setOneData] = useState({
+    id: 0,
+    name: "",
+    comment: "",
     todos: [],
   });
 
@@ -93,11 +109,41 @@ export default function DashboardChartsWrapper({ filter }: Props) {
     [data?.categories],
   );
 
+  const setPdfHandler = useCallback(
+    (value: any) => {
+      if (value === "all") {
+        setModalPdfData(data);
+      } else {
+        const chart = data?.categories && data?.categories.filter((x: any) => x.id === value);
+
+        if (chart.length > 0) {
+          setModalData(chart[0]);
+        }
+      }
+
+      setPdfModal(true);
+    },
+    [data],
+  );
+
+  const setChartForOneHandler = useCallback(
+    (value: any) => {
+      const chart = data?.categories && data?.categories.filter((x: any) => x.id === value);
+
+      if (chart.length > 0) {
+        setOneData(chart[0]);
+        setIsOneData(true);
+      }
+    },
+    [data?.categories],
+  );
+
   const downloadFile = useCallback(
     (categoryId: any, templateId: any) => {
       TodosApi.getAllFileNames({ categoryId, templateId })
         .then((r) => {
           r?.data &&
+            // eslint-disable-next-line array-callback-return
             r?.data.map((fileName: string) => {
               if (fileName !== "" && Boolean(fileName)) {
                 axios({
@@ -133,13 +179,31 @@ export default function DashboardChartsWrapper({ filter }: Props) {
           enableReinitialize={true}
         >
           {() => (
-            <Form>
+            <Form className="d-flex align-items-center justify-content-between">
               <SelectPickerField
                 name="regionId"
                 width={400}
                 options={regions}
                 onChanges={(event) => locationHelpers.pushQuery({ regionId: event.value })}
               />
+              {!isOneData && (
+                <Button
+                  className="p-2 d-flex align-items-center"
+                  onClick={() => setPdfHandler("all")}
+                >
+                  <DonwloadIcon size={20} color="green" />
+                  Pdfda yuklash
+                </Button>
+              )}
+
+              {isOneData && (
+                <Button
+                  className="p-2 d-flex align-items-center"
+                  onClick={() => setIsOneData(false)}
+                >
+                  Qaytish
+                </Button>
+              )}
             </Form>
           )}
         </Formik>
@@ -147,6 +211,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
       <div className="mt-3"></div>
 
       {data &&
+        !isOneData &&
         // eslint-disable-next-line array-callback-return
         data?.categories?.map((category: any, index: any) => {
           if (category?.todos?.length > 0)
@@ -159,11 +224,27 @@ export default function DashboardChartsWrapper({ filter }: Props) {
                   title={category.name}
                   comment={category.comment}
                   setChart={setChartHandler}
+                  setChartForOne={setChartForOneHandler}
                   downloadFile={(todoId: any) => downloadFile(category?.id, todoId)}
                 />
               </div>
             );
         })}
+
+      {isOneData && (
+        <div className="col-12 my-3">
+          <Chart
+            id={oneData.id}
+            labels={labels}
+            data={oneData.todos}
+            title={oneData.name}
+            comment={oneData.comment}
+            setChart={setChartHandler}
+            setChartForOne={setChartHandler}
+            downloadFile={(todoId: any) => downloadFile(oneData?.id, todoId)}
+          />
+        </div>
+      )}
 
       <Modal
         show={modal}
@@ -179,6 +260,15 @@ export default function DashboardChartsWrapper({ filter }: Props) {
           </h5>
           <DashboardVIew data={modalData?.todos && modalData?.todos} />
         </GroupBox>
+      </Modal>
+      <Modal
+        show={pdfModal}
+        width="1000px"
+        height="1000px"
+        className="d-flex align-items-center justify-content-center"
+        closeHandler={() => setPdfModal(false)}
+      >
+        <DashboardPdf data={modalPdfData} />
       </Modal>
     </div>
   );
