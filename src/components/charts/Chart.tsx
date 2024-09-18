@@ -111,7 +111,7 @@ export default function Chart({
                         key={index}
                         index={index}
                         width={`${100 / data.length}%`}
-                        heigt={chartItem.inPercentage}
+                        heigt={chartItem.inPercentage?.substring(0, 4)}
                         inProcess={chartItem.inProcess}
                         itemLabel={chartItem.name}
                       />

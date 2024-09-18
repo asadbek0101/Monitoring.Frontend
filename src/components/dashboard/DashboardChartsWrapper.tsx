@@ -13,9 +13,10 @@ import useLocationHelpers from "../../hooks/userLocationHelpers";
 import Modal from "../ui/Modal";
 import DashboardVIew from "./DashboardView";
 import axios from "axios";
-import Button from "../ui/Button";
+import Button, { BgColors } from "../ui/Button";
 import DonwloadIcon from "../icons/DowloadIcon";
 import DashboardPdf from "./DashboardPdf";
+import SaveExcel from "../ui/SaveExcel";
 
 interface Props {
   readonly filter: DashboardFilter;
@@ -187,13 +188,16 @@ export default function DashboardChartsWrapper({ filter }: Props) {
                 onChanges={(event) => locationHelpers.pushQuery({ regionId: event.value })}
               />
               {!isOneData && (
-                <Button
-                  className="p-2 d-flex align-items-center"
-                  onClick={() => setPdfHandler("all")}
-                >
-                  <DonwloadIcon size={20} color="green" />
-                  Pdfda yuklash
-                </Button>
+                <div className="d-flex gap-3">
+                  <Button
+                    className="p-2 d-flex align-items-center"
+                    onClick={() => setPdfHandler("all")}
+                  >
+                    <DonwloadIcon size={20} color="green" />
+                    Pdfda yuklash
+                  </Button>
+                  <SaveExcel data={data} />
+                </div>
               )}
 
               {isOneData && (
@@ -254,6 +258,11 @@ export default function DashboardChartsWrapper({ filter }: Props) {
         height="700px"
         contentClassName="d-flex justify-content-center align-items-center p-3 flex-column "
       >
+        <div className="py-2 w-100">
+          <Button className="p-2" bgColor={BgColors.Yellow} onClick={() => setModal(false)}>
+            Yopish
+          </Button>
+        </div>
         <GroupBox className="h-100 overflow-auto">
           <h5 className="py-2">
             {getRegion(regionId)?.label} - {modalData?.name}

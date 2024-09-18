@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ag-grid-community/client-side-row-model": "^32.2.0",
+    "@ag-grid-community/react": "^32.2.0",
+    "@ag-grid-community/styles": "^32.2.0",
+    "@ag-grid-enterprise/excel-export": "^32.2.0",
+    "@ag-grid-enterprise/menu": "^32.2.0",
+    "@ag-grid-enterprise/set-filter": "^32.2.0",
     "@canvasjs/react-charts": "^1.0.2",
     "@react-pdf/renderer": "^3.4.4",
     "@testing-library/jest-dom": "^5.17.0",
