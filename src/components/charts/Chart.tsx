@@ -40,6 +40,7 @@ export default function Chart({
   downloadFile,
 }: Props) {
   const [sortMethodType, setSortMethodType] = useState<"upper" | "lower">("upper");
+  const [activeId, setActiveId] = useState<number>(0);
 
   if (data.length === 0) {
     return null;
@@ -108,20 +109,23 @@ export default function Chart({
                   (chartItem: any, index: number) => {
                     return (
                       <ChartItem
+                        id={chartItem?.id}
+                        activeId={activeId}
                         key={index}
                         index={index}
                         width={`${100 / data.length}%`}
-                        heigt={chartItem.inPercentage?.substring(0, 4)}
-                        inProcess={chartItem.inProcess}
-                        itemLabel={chartItem.name}
+                        heigt={chartItem?.inPercentage?.substring(0, 4)}
+                        inProcess={chartItem?.inProcess?.substring(0, 4)}
+                        inPlan={chartItem?.inPlan?.substring(0, 4)}
+                        itemLabel={chartItem?.name}
+                        setChartItem={(value) => setActiveId(value)}
                       />
                     );
                   },
                 )}
             </div>
           </div>
-          <div className="chart-circle">
-            {/* <ChartCircle value={getValueForCircleChart(data)} /> */}
+          <div className="chart-circle mt-4">
             <PieChart value={getValueForCircleChart(data)} />
           </div>
         </div>
@@ -140,7 +144,13 @@ export default function Chart({
           {data &&
             sortData(data, "inPercentage", sortMethodType)?.map((chartItem: any, index: number) => {
               return (
-                <div className="my-2 d-flex align-items-center gap-2">
+                <div
+                  className={`my-2 d-flex align-items-center gap-2 px-2 p-1 ${activeId === chartItem.id ? "bg-success" : ""}`}
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setActiveId(chartItem.id)}
+                >
                   <div
                     className="px-1 py-1"
                     style={{
@@ -153,9 +163,11 @@ export default function Chart({
                     style={{
                       fontSize: "17px",
                       fontWeight: "bold",
+                      color: `${activeId === chartItem.id ? "#fff" : ""}`,
                     }}
                   >
-                    {chartItem.name}
+                    {chartItem.name}{" "}
+                    {`  ${activeId === chartItem.id ? "=> " + chartItem.inProcess + " / " + chartItem.inPlan : ""}`}
                   </span>
                   {chartItem?.fileName && (
                     <div>
