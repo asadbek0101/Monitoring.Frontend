@@ -167,7 +167,7 @@ export default function Chart({
                     }}
                   >
                     {chartItem.name}{" "}
-                    {`  ${activeId === chartItem.id ? "=> " + chartItem.inProcess + " / " + chartItem.inPlan : ""}`}
+                    {`  ${activeId === chartItem.id ? "=> " + "( " + chartItem?.inProcess + " / " + chartItem?.inPlan + " = " + chartItem?.inPercentage?.replaceAll("%", "") + "%" + " )" : ""}`}
                   </span>
                   {chartItem?.fileName && (
                     <div>
