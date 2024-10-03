@@ -90,15 +90,15 @@ export default function PdfTable({ data }: Props) {
                 <Text style={styles.table_body_text}>{item?.name}</Text>
               </View>
               <View style={styles.table_body_td2}>
-                <Text style={styles.table_body_text}>{item?.inPlan}</Text>
+                <Text style={styles.table_body_text}>{item?.inPlan?.substring(0, 4)}</Text>
               </View>
               <View style={styles.table_body_td2}>
-                <Text style={styles.table_body_text}>{item?.inProcess}</Text>
+                <Text style={styles.table_body_text}>{item?.inProcess?.substring(0, 4)}</Text>
               </View>
               <View style={styles.table_body_td2}>
                 <Text
                   style={styles.table_body_text}
-                >{`${item?.inPercentage.replaceAll("%", "")}%`}</Text>
+                >{`${item?.inPercentage?.substring(0, 4).replaceAll("%", "")}%`}</Text>
               </View>
             </View>
           );
