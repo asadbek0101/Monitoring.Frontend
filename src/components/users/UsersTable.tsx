@@ -18,6 +18,11 @@ export default function UsersTable({ data = [], edit }: Props) {
         width: 50,
       },
       {
+        Header: "Hudud",
+        accessor: "region",
+        width: 220,
+      },
+      {
         Header: "E-pochta",
         accessor: "email",
         width: 220,

@@ -43,15 +43,33 @@ export default function SidebarMenu() {
         <SidebarItem link="todos" icon={<FlagIcon />}>
           {translate("Tadbirlar")}
         </SidebarItem>
-        <SidebarItem link="categories" icon={<FlagIcon />}>
-          {translate("Loyihalar")}
-        </SidebarItem>
-        <SidebarItem link="templates" icon={<ProductsIcon />}>
-          {translate("Shablonlar")}
-        </SidebarItem>
-        <SidebarItem link="reg-cate" icon={<FlagIcon />}>
-          {translate("Loyihalar hududlar uchun")}
-        </SidebarItem>
+        {Boolean(
+          CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile),
+        ) && (
+          <SidebarItem link="categories" icon={<FlagIcon />}>
+            {translate("Loyihalar")}
+          </SidebarItem>
+        )}
+        {Boolean(
+          CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile),
+        ) && (
+          <SidebarItem link="templates" icon={<ProductsIcon />}>
+            {translate("Shablonlar")}
+          </SidebarItem>
+        )}
+        {Boolean(
+          CheckRole(UserRoles.Programmer, profile) ||
+            CheckRole(UserRoles.DepartmentHead, profile) ||
+            CheckRole(UserRoles.ChiefSpecialist, profile),
+        ) && (
+          <SidebarItem link="reg-cate" icon={<FlagIcon />}>
+            {translate("Loyihalar hududlar uchun")}
+          </SidebarItem>
+        )}
         {CheckRole(UserRoles.Programmer, profile) && (
           <SidebarItem link="users" icon={<UsersIcon />}>
             {translate("Foydalanuvchilar")}
@@ -61,3 +79,13 @@ export default function SidebarMenu() {
     </div>
   );
 }
+
+// {Boolean(
+//   CheckRole(UserRoles.Programmer, profile) ||
+//     CheckRole(UserRoles.DepartmentHead, profile) ||
+//     CheckRole(UserRoles.ChiefSpecialist, profile),
+// ) && (
+//   <SidebarItem link="reg-cate" icon={<FlagIcon />}>
+//     {translate("Loyihalar hududlar uchun")}
+//   </SidebarItem>
+// )}

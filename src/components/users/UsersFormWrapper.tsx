@@ -9,6 +9,7 @@ import TabPage from "../tabs/TabPage";
 import UsersForm from "./UsersForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
+import { useRegionContext } from "../../api/regions/RegionsApiContext";
 
 interface Props {
   readonly filter: UserFilter;
@@ -16,9 +17,11 @@ interface Props {
 
 export default function UsersFormWrapper({ filter }: Props) {
   const [roles, setRoles] = useState<{ label: string; value: string | number }[]>([]);
+  const [regions, setRegions] = useState<{ label: string; value: string | number }[]>([]);
 
   const [initialValues, setInitialValues] = useState<UserInitialProps>({
     id: 0,
+    regionId: 0,
     firstName: "",
     lastName: "",
     middleName: "",
@@ -31,6 +34,7 @@ export default function UsersFormWrapper({ filter }: Props) {
   });
 
   const { UsersApi } = useUsersContext();
+  const { RegionsApi } = useRegionContext();
 
   const locationHelpers = useLocationHelpers();
 
@@ -45,6 +49,10 @@ export default function UsersFormWrapper({ filter }: Props) {
             role: {
               label: r?.data?.roleName,
               value: r?.data?.roleValue,
+            },
+            region: {
+              label: r?.data?.region,
+              value: r?.data?.regionId,
             },
           };
 
@@ -66,11 +74,23 @@ export default function UsersFormWrapper({ filter }: Props) {
             };
           });
 
-        
         setRoles(_roles);
       })
       .catch(showError);
   }, [UsersApi]);
+
+  useEffect(() => {
+    RegionsApi.getRegionsList().then((r: any) => {
+      const _regions = r?.data?.map((re: any) => {
+        return {
+          label: re.name,
+          value: re.id,
+        };
+      });
+
+      setRegions(_regions);
+    });
+  }, [RegionsApi]);
 
   const onSubmit = useCallback(
     (value: any) => {
@@ -80,6 +100,7 @@ export default function UsersFormWrapper({ filter }: Props) {
           ...value,
           roleName: value?.role?.label,
           roleValue: value?.role?.value,
+          regionId: value?.region?.value,
         };
 
         UsersApi.updateUser(json)
@@ -97,6 +118,7 @@ export default function UsersFormWrapper({ filter }: Props) {
           ...value,
           roleName: value?.role?.label,
           roleValue: value?.role?.value,
+          regionId: value?.region?.value,
         };
 
         UsersApi.createUser(json)
@@ -130,6 +152,7 @@ export default function UsersFormWrapper({ filter }: Props) {
     >
       <UsersForm
         roles={roles}
+        regions={regions}
         initialValues={initialValues}
         setInitialValues={setInitialValues}
         onSubmit={onSubmit}

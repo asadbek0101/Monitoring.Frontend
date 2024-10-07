@@ -7,12 +7,19 @@ import Button, { BgColors } from "../ui/Button";
 
 interface Props {
   readonly roles: any;
+  readonly regions: any;
   readonly initialValues: UserInitialProps;
   readonly setInitialValues: (value: any) => void;
   readonly onSubmit: (value: any) => void;
 }
 
-export default function UsersForm({ roles, initialValues, setInitialValues, onSubmit }: Props) {
+export default function UsersForm({
+  roles,
+  regions,
+  initialValues,
+  setInitialValues,
+  onSubmit,
+}: Props) {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit} enableReinitialize={true}>
       {() => (
@@ -37,6 +44,9 @@ export default function UsersForm({ roles, initialValues, setInitialValues, onSu
                 </div>
                 <div className="col-4 mt-3">
                   <SelectPickerField name="role" label="Lavozim" options={roles} />
+                </div>
+                <div className="col-4 mt-3">
+                  <SelectPickerField name="region" label="Hudud" options={regions} />
                 </div>
                 <div className="col-4 mt-3">
                   <InputField name="userName" label="Username" />

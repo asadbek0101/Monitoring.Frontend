@@ -5,15 +5,19 @@ import { useTemplatesApiContext } from "../../api/templates/TemplatesApiContext"
 import { useCategoriesApiContext } from "../../api/categories/CategoriesApiContext";
 import { showError } from "../../utils/NotificationUtils";
 import { TodoFilter, TodoFilterTabs } from "../../filters/TodoFilter";
+import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
+import { profileSelector } from "../../reducers/authReducer";
+import { CheckRole } from "../../utils/CheckRole";
+import { UserRoles } from "../../api/AppDto";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useTodosApiContext } from "../../api/todos/TodosApiContext";
+import { update } from "immupdate";
 
 import TabPage from "../tabs/TabPage";
 import TodosForm from "./TodosForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
-import { update } from "immupdate";
 import axios from "axios";
 
 interface Props {
@@ -42,32 +46,46 @@ export default function TodosFormWrapper({ filter }: Props) {
   const { CategoriesApi } = useCategoriesApiContext();
   const { TodosApi } = useTodosApiContext();
 
+  const profile = useShallowEqualSelector(profileSelector);
+
   const navigate = useNavigate();
 
   const locationHelpers = useLocationHelpers();
 
+  const regionId = useMemo(() => Number(profile?.RegionId) || 0, [profile]);
+
   const todoId = useMemo(() => Number(filter.getTodoId()) || 0, [filter]);
 
-  useEffect(() => {
-    TodosApi.getOneTodo({ id: todoId }).then((r: any) => {
-      const json = {
-        ...r?.data,
-        regionId: {
-          label: r?.data?.region,
-          value: r?.data?.regionId,
-        },
-        categoryId: {
-          label: r?.data?.category,
-          value: r?.data?.categoryId,
-        },
-        templateId: {
-          label: r?.data?.name,
-          value: r?.data?.templateId,
-        },
-      };
+  const checkRegion = useCallback(() => {
+    return (
+      CheckRole(UserRoles.Programmer, profile) ||
+      CheckRole(UserRoles.DepartmentHead, profile) ||
+      CheckRole(UserRoles.ChiefSpecialist, profile)
+    );
+  }, [profile]);
 
-      setInitialValues(json);
-    });
+  useEffect(() => {
+    if (Boolean(todoId)) {
+      TodosApi.getOneTodo({ id: todoId }).then((r: any) => {
+        const json = {
+          ...r?.data,
+          regionId: {
+            label: r?.data?.region,
+            value: r?.data?.regionId,
+          },
+          categoryId: {
+            label: r?.data?.category,
+            value: r?.data?.categoryId,
+          },
+          templateId: {
+            label: r?.data?.name,
+            value: r?.data?.templateId,
+          },
+        };
+
+        setInitialValues(json);
+      });
+    }
   }, [RegionsApi, todoId, TodosApi]);
 
   useEffect(() => {
@@ -82,6 +100,35 @@ export default function TodosFormWrapper({ filter }: Props) {
       setRegions(_regions);
     });
   }, [RegionsApi]);
+
+  useEffect(() => {
+    if (!checkRegion()) {
+      const region = regions.filter((item: any) => item.value === regionId);
+      if (region.length > 0) {
+        setInitialValues((prev: any) =>
+          update(prev, {
+            regionId: {
+              label: region[0]?.label,
+              value: region[0]?.value,
+            },
+          }),
+        );
+      }
+      CategoriesApi.getCategoriesList({
+        regionId: Number(regionId) || 0,
+        type: "todo",
+      }).then((r: any) => {
+        const _categories = r?.data?.map((re: any) => {
+          return {
+            label: re.name,
+            value: re.id,
+          };
+        });
+
+        setCategories(_categories);
+      });
+    }
+  }, [regionId, regions, checkRegion, CategoriesApi]);
 
   const onChangeRegionId = useCallback(
     (event: any) => {

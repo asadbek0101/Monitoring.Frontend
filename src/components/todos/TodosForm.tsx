@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { SelectBoxProps } from "../../api/AppDto";
+import { SelectBoxProps, UserRoles } from "../../api/AppDto";
 import { TodoInitialProps } from "../../api/todos/TodosDto";
 import { GroupBox } from "../ui/GroupBox";
 import { SelectPickerField } from "../form/SelectPrickerField";
@@ -7,11 +7,11 @@ import { useCallback } from "react";
 import { update } from "immupdate";
 import { InputField } from "../form/InputField";
 import { TextAreaField } from "../form/TextAreaField";
-import axios from "axios";
 import Button, { BgColors } from "../ui/Button";
 import FileUpload from "../ui/FileUpload";
-import { toast } from "react-toastify";
-import { showError } from "../../utils/NotificationUtils";
+import { CheckRole } from "../../utils/CheckRole";
+import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
+import { profileSelector } from "../../reducers/authReducer";
 
 interface Props {
   readonly todoId: string | number;
@@ -36,6 +36,16 @@ export default function TodosForm({
   onChangeCategoryId,
   onSubmit,
 }: Props) {
+  const profile = useShallowEqualSelector(profileSelector);
+
+  const checkRegion = useCallback(() => {
+    return (
+      CheckRole(UserRoles.Programmer, profile) ||
+      CheckRole(UserRoles.DepartmentHead, profile) ||
+      CheckRole(UserRoles.ChiefSpecialist, profile)
+    );
+  }, [profile]);
+
   const onChangeTemplateId = useCallback(
     (event: any) => {
       setInitialValues((prev: any) =>
@@ -147,7 +157,7 @@ export default function TodosForm({
                       options={regions}
                       label="Hudud nomi"
                       isSearchable
-                      disabled={todoId !== 0}
+                      disabled={todoId !== 0 || !checkRegion()}
                       onChanges={onChangeRegionId}
                     />
                   </div>

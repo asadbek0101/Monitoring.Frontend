@@ -25,15 +25,11 @@ export default function AppLayout({ children }: Props) {
 
   return (
     <div className="app-layout-container">
-      {(CheckRole(UserRoles.Programmer, profile) ||
-        CheckRole(UserRoles.DepartmentHead, profile) ||
-        CheckRole(UserRoles.ChiefSpecialist, profile)) && (
-        <div
-          className={`app-sidebar ${menuType === AppMenuType.Closed ? "close-app-sidebar-menu" : ""}`}
-        >
-          <AppSidebarWrapper />
-        </div>
-      )}
+      <div
+        className={`app-sidebar ${menuType === AppMenuType.Closed ? "close-app-sidebar-menu" : ""}`}
+      >
+        <AppSidebarWrapper />
+      </div>
       <div
         className={`app-pages ${menuType === AppMenuType.Closed ? "full-app-pages" : ""} ${!CheckRole(UserRoles.Programmer, profile) && !CheckRole(UserRoles.DepartmentHead, profile) ? "admin-pages" : ""}`}
       >

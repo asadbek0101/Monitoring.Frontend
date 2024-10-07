@@ -18,6 +18,7 @@ export interface CreateUserProps {
 
 export interface UserInitialProps {
   readonly id: number | string;
+  readonly regionId: number | string;
   readonly firstName: string;
   readonly lastName: string;
   readonly middleName: string;

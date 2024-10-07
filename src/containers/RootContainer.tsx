@@ -38,11 +38,7 @@ export default function RootContainer() {
     <Routes>
       {isAuthorized && (
         <Route path="/dashboard" element={<AppContainer />}>
-          {(CheckRole(UserRoles.DepartmentHead, profile) ||
-            CheckRole(UserRoles.Programmer, profile) ||
-            CheckRole(UserRoles.ChiefSpecialist, profile)) && (
-            <Route path="todos/:tab?" element={<TodosContainer />} />
-          )}
+          <Route path="todos/:tab?" element={<TodosContainer />} />
           <Route path="statistic/:tab?" element={<DashboardContainer />} />
           {(CheckRole(UserRoles.DepartmentHead, profile) ||
             CheckRole(UserRoles.Programmer, profile) ||

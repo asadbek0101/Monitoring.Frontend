@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { showError } from "../../utils/NotificationUtils";
 import { useTodosApiContext } from "../../api/todos/TodosApiContext";
 import { Form, Formik } from "formik";
@@ -6,6 +6,10 @@ import { noop } from "lodash";
 import { SelectPickerField } from "../form/SelectPrickerField";
 import { useRegionContext } from "../../api/regions/RegionsApiContext";
 import { useCategoriesApiContext } from "../../api/categories/CategoriesApiContext";
+import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
+import { profileSelector } from "../../reducers/authReducer";
+import { CheckRole } from "../../utils/CheckRole";
+import { UserRoles } from "../../api/AppDto";
 import { InputField } from "../form/InputField";
 import { TodoFilter, TodoFilterTabs } from "../../filters/TodoFilter";
 import { GroupBox } from "../ui/GroupBox";
@@ -33,11 +37,23 @@ export default function TodosTableWrapper({ filter }: Props) {
   const [categories, setCategories] = useState<{ label: string; value: number }[]>([]);
   const [regions, setRegions] = useState<{ label: string; value: number }[]>([]);
 
+  const profile = useShallowEqualSelector(profileSelector);
+
+  const regionId = useMemo(() => Number(profile?.RegionId) || 0, [profile]);
+
   const { TodosApi } = useTodosApiContext();
   const { RegionsApi } = useRegionContext();
   const { CategoriesApi } = useCategoriesApiContext();
 
   const locationHelpers = useLocationHelpers();
+
+  const checkRegion = useCallback(() => {
+    return (
+      CheckRole(UserRoles.Programmer, profile) ||
+      CheckRole(UserRoles.DepartmentHead, profile) ||
+      CheckRole(UserRoles.ChiefSpecialist, profile)
+    );
+  }, [profile]);
 
   useEffect(() => {
     RegionsApi.getRegionsList().then((r: any) => {
@@ -73,18 +89,20 @@ export default function TodosTableWrapper({ filter }: Props) {
 
   useEffect(() => {
     setLoading(true);
-    TodosApi.getAllTodos(filter.getTodoFilter())
+    TodosApi.getAllTodos({
+      ...filter.getTodoFilter(),
+      regionId: checkRegion() ? filter.getRegionId() : regionId,
+    })
       .then((r: any) => {
         setData(r?.data);
         setLoading(false);
       })
       .catch(showError);
-  }, [TodosApi, filter]);
+  }, [TodosApi, filter, checkRegion, regionId]);
 
   const getRegion = useCallback(
     (value: any) => {
       const region = regions.filter((r) => r.value === Number(value));
-
       return region.length > 0 && region[0];
     },
     [regions],
@@ -93,7 +111,6 @@ export default function TodosTableWrapper({ filter }: Props) {
   const getCategory = useCallback(
     (value: any) => {
       const category = categories.filter((r) => r.value === Number(value));
-
       return category.length > 0 && category[0];
     },
     [categories],
@@ -138,15 +155,17 @@ export default function TodosTableWrapper({ filter }: Props) {
           >
             {() => (
               <Form className="d-flex gap-3 align-items-center">
-                <SelectPickerField
-                  name="regionId"
-                  width={300}
-                  placeholder="Saralash(hudud)"
-                  options={regions}
-                  onChanges={(event: any) =>
-                    locationHelpers.pushQuery({ regionId: Number(event.value) })
-                  }
-                />
+                {CheckRole(UserRoles.Programmer, profile) && (
+                  <SelectPickerField
+                    name="regionId"
+                    width={300}
+                    placeholder="Saralash(hudud)"
+                    options={regions}
+                    onChanges={(event: any) =>
+                      locationHelpers.pushQuery({ regionId: Number(event.value) })
+                    }
+                  />
+                )}
                 <SelectPickerField
                   name="categoryId"
                   width={300}

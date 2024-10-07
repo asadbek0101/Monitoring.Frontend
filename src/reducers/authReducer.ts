@@ -16,6 +16,7 @@ export interface Profile {
   readonly name: string;
   readonly role: string;
   readonly RoleName: string;
+  readonly RegionId: string;
 }
 
 interface SetTokenMeta {
