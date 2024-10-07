@@ -155,7 +155,11 @@ export default function TodosTableWrapper({ filter }: Props) {
           >
             {() => (
               <Form className="d-flex gap-3 align-items-center">
-                {CheckRole(UserRoles.Programmer, profile) && (
+                {Boolean(
+                  CheckRole(UserRoles.Programmer, profile) ||
+                    CheckRole(UserRoles.DepartmentHead, profile) ||
+                    CheckRole(UserRoles.ChiefSpecialist, profile),
+                ) && (
                   <SelectPickerField
                     name="regionId"
                     width={300}
@@ -166,6 +170,7 @@ export default function TodosTableWrapper({ filter }: Props) {
                     }
                   />
                 )}
+
                 <SelectPickerField
                   name="categoryId"
                   width={300}
