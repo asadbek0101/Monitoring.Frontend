@@ -259,7 +259,9 @@ export default function TodosFormWrapper({ filter }: Props) {
                 TodosApi.createTodo(json)
                   .then((r) => {
                     toast.success(r?.message);
-                    navigate("/dashboard/todos/table");
+                    navigate(
+                      `/dashboard/todos?tab=table&todoId=0&regionId=${filter.getRegionId()}&categoryId=${filter.getCategoryId()}`,
+                    );
                   })
                   .catch(showError);
               })
@@ -275,7 +277,9 @@ export default function TodosFormWrapper({ filter }: Props) {
             TodosApi.createTodo(json)
               .then((r) => {
                 toast.success(r?.message);
-                navigate("/dashboard/todos/table");
+                navigate(
+                  `/dashboard/todos?tab=table&todoId=0&regionId=${filter.getRegionId()}&categoryId=${filter.getCategoryId()}`,
+                );
               })
               .catch(showError);
           }
@@ -284,7 +288,7 @@ export default function TodosFormWrapper({ filter }: Props) {
         toast.error("Plan must be high than Process");
       }
     },
-    [TodosApi, navigate, todoId],
+    [TodosApi, navigate, todoId, filter],
   );
 
   return (

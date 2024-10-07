@@ -24,6 +24,7 @@ import Paginator from "../paginator/Paginator";
 import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -44,6 +45,8 @@ export default function TodosTableWrapper({ filter }: Props) {
   const { TodosApi } = useTodosApiContext();
   const { RegionsApi } = useRegionContext();
   const { CategoriesApi } = useCategoriesApiContext();
+
+  const navigator = useNavigate();
 
   const locationHelpers = useLocationHelpers();
 
@@ -133,6 +136,15 @@ export default function TodosTableWrapper({ filter }: Props) {
     });
   }, []);
 
+  const editFunction = useCallback(
+    (value: any) => {
+      navigator(
+        `/dashboard/todos?tab=form&todoId=${value}&regionId=${filter.getRegionId()}&categoryId=${filter.getCategoryId()}`,
+      );
+    },
+    [filter, navigator],
+  );
+
   return (
     <TabPage
       headerComponent={
@@ -214,9 +226,7 @@ export default function TodosTableWrapper({ filter }: Props) {
       <TodosTable
         loading={loading}
         data={data?.data}
-        edit={(value: any) =>
-          locationHelpers.pushQuery({ tab: TodoFilterTabs.Form, todoId: value })
-        }
+        edit={editFunction}
         downloadFile={downloadFile}
         selectIds={setDeleteDocuments}
       />

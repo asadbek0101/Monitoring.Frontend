@@ -44,4 +44,8 @@ export class TodoFilter extends AppFilter<TodoFilterTabs> {
   public getRegionId() {
     return this.regionId;
   }
+
+  public getCategoryId() {
+    return this.categoryId;
+  }
 }
