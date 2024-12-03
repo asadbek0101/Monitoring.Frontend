@@ -23,17 +23,17 @@ export default function RegionCategoriesTable({ data = [], edit, selectIds, load
       {
         Header: "Hudud nomi",
         accessor: "region",
-        width: 300,
+        width: 400,
       },
       {
         Header: "Buyruq tofiasi nomi",
         accessor: "category",
-        width: 300,
+        width: 400,
       },
       {
         Header: "Qo'shimcha ma'lumot",
         accessor: "comment",
-        width: 300,
+        width: 400,
       },
       {
         Header: "Yaratilgan vaqti",

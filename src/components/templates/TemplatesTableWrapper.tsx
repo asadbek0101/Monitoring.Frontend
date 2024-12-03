@@ -16,6 +16,7 @@ import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
 import DeleteIcon from "../icons/DeleteIcon";
 import Paginator from "../paginator/Paginator";
+import AddIcon from "../icons/AddIcon";
 
 interface Props {
   readonly filter: TemplateFilter;
@@ -45,13 +46,6 @@ export default function TemplatesTableWrapper({ filter }: Props) {
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
-            onClick={() => locationHelpers.pushQuery({ tab: TempalteFilterTabs.Form })}
-          >
-            Qo'shish
-          </Button>
           <Formik
             initialValues={{ searchValue: filter.getTemplateFilter().searchValue }}
             onSubmit={noop}
@@ -70,6 +64,13 @@ export default function TemplatesTableWrapper({ filter }: Props) {
               </Form>
             )}
           </Formik>
+          <Button
+            className="px-3 py-2 text-light"
+            onClick={() => locationHelpers.pushQuery({ tab: TempalteFilterTabs.Form })}
+          >
+            <AddIcon />
+            Qo'shish
+          </Button>
         </div>
       }
       footerComponent={

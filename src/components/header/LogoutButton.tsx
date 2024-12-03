@@ -1,20 +1,18 @@
-
-import { useI18n } from "../../i18n/I18nContext";
 import "./assets/logout-button.scss";
+import { useI18n } from "../../i18n/I18nContext";
+import LogoutIcon from "../icons/LogoutIcon";
 
-interface Props{
-    readonly onClick: () => void;
+interface Props {
+  readonly onClick: () => void;
 }
 
-export default function LogoutButton({
-    onClick
-}:Props){
+export default function LogoutButton({ onClick }: Props) {
+  const { translate } = useI18n();
 
-    const { translate } = useI18n();
-
-    return (
-        <button className="logout-button" onClick={onClick}>
-            {translate("LOGOUT_BUTTON_TITLE")}
-        </button>
-    )
+  return (
+    <button className="logout-button px-3 py-2 text-light" onClick={onClick}>
+      <LogoutIcon color="#fff" />
+      {translate("Chiqish")}
+    </button>
+  );
 }

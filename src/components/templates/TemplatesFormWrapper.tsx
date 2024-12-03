@@ -9,6 +9,7 @@ import TabPage from "../tabs/TabPage";
 import TemplatesForm from "./TemplatesForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
+import BackIcon from "../icons/BackIcon";
 
 interface Props {
   readonly filter: TemplateFilter;
@@ -68,10 +69,11 @@ export default function TemplatesFormWrapper({ filter }: Props) {
       headerComponent={
         <div className="d-flex justify-content-between">
           <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
+            className="px-3 py-2 d-flex align-items-center gap-3"
+            bgColor={"#fff"}
             onClick={() => locationHelpers.pushQuery({ tab: TempalteFilterTabs.Table })}
           >
+            <BackIcon />
             Orqaga
           </Button>
         </div>

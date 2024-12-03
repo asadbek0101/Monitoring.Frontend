@@ -48,8 +48,8 @@ export default function Paginator({ filter, totalPageCount, totalRowCount }: Pro
         <option value="80">80</option>
         <option value="100">100</option>
       </select>
-      <div className="d-flex align-items-center text-light">
-        {pageCount} of {totalPageCount}
+      <div className="d-flex align-items-center">
+        {pageCount} : {totalPageCount}
       </div>
       <div className="button-group">
         <button onClick={() => prev()}>
@@ -60,8 +60,8 @@ export default function Paginator({ filter, totalPageCount, totalRowCount }: Pro
           <RightIcon color="#000" />
         </button>
       </div>
-      <div className="d-flex align-items-center text-light">
-        <span>Total </span>
+      <div className="d-flex align-items-center">
+        <span>Hammasi </span>
         <span className="ms-2">{totalRowCount}</span>
       </div>
     </div>

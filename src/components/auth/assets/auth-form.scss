@@ -3,33 +3,41 @@
   height: 320px;
   border-radius: 2px;
   padding: 20px 30px;
+  position: relative;
+  margin-top: 60px;
 
-  h1 {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 20px;
+  .auth-form-title {
+    h5 {
+      font-size: 16px;
+      color: #fff;
+    }
+    h1 {
+      font-size: 28px;
+      color: #fff;
+    }
   }
 
-  .auth-lang-select {
-    outline: 0;
+  .custom-label {
+    color: #fff;
   }
 
   input {
     width: 100%;
     margin: 10px 0;
-    height: 36px !important;
+    height: 50px !important;
     outline: none;
     padding: 0 10px;
+    border-radius: 10px !important;
   }
 
   button {
     width: 100%;
-    height: 36px;
+    height: 50px;
     margin-top: 30px;
     border: transparent;
     font-weight: bold;
-    color: #fff;
     box-shadow: none;
-    background-image: linear-gradient(-45deg, #06376D, #186ABF);
+    background: rgba(255, 255, 255, 1);
+    border-radius: 10px;
   }
 }

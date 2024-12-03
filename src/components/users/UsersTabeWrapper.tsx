@@ -13,6 +13,7 @@ import Button, { BgColors } from "../ui/Button";
 import Paginator from "../paginator/Paginator";
 import DeleteIcon from "../icons/DeleteIcon";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
+import AddIcon from "../icons/AddIcon";
 
 interface Props {
   readonly filter: UserFilter;
@@ -69,13 +70,6 @@ export default function UsersTableWrapper({ filter }: Props) {
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
-            onClick={() => locationHelpers.pushQuery({ tab: UserFilterTabs.UserForm })}
-          >
-            Qo'shish
-          </Button>
           <Formik
             initialValues={{
               searchValue: filter?.getUsersFilter()?.searchValue,
@@ -103,6 +97,13 @@ export default function UsersTableWrapper({ filter }: Props) {
               </Form>
             )}
           </Formik>
+          <Button
+            className="px-3 py-2 text-light"
+            onClick={() => locationHelpers.pushQuery({ tab: UserFilterTabs.UserForm })}
+          >
+            <AddIcon />
+            Qo'shish
+          </Button>
         </div>
       }
       footerComponent={

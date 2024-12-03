@@ -20,6 +20,7 @@ import DeleteIcon from "../icons/DeleteIcon";
 import Paginator from "../paginator/Paginator";
 import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
+import AddIcon from "../icons/AddIcon";
 
 interface Props {
   readonly filter: RegionCategoryFilter;
@@ -103,13 +104,6 @@ export default function RegionCategoriesTableWrapper({ filter }: Props) {
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
-            onClick={() => locationHelpers.pushQuery({ tab: RegionCategoryFilterTabs.Form })}
-          >
-            Qo'shish
-          </Button>
           <Formik
             initialValues={{
               regionId: getRegion(filter?.getRegionCategoryFilter()?.regionId),
@@ -151,6 +145,13 @@ export default function RegionCategoriesTableWrapper({ filter }: Props) {
               </Form>
             )}
           </Formik>
+          <Button
+            className="px-3 py-2 text-light"
+            onClick={() => locationHelpers.pushQuery({ tab: RegionCategoryFilterTabs.Form })}
+          >
+            <AddIcon />
+            Qo'shish
+          </Button>
         </div>
       }
       footerComponent={

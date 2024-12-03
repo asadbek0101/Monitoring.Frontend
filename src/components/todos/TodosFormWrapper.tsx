@@ -4,7 +4,7 @@ import { useRegionContext } from "../../api/regions/RegionsApiContext";
 import { useTemplatesApiContext } from "../../api/templates/TemplatesApiContext";
 import { useCategoriesApiContext } from "../../api/categories/CategoriesApiContext";
 import { showError } from "../../utils/NotificationUtils";
-import { TodoFilter, TodoFilterTabs } from "../../filters/TodoFilter";
+import { TodoFilter } from "../../filters/TodoFilter";
 import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
 import { profileSelector } from "../../reducers/authReducer";
 import { CheckRole } from "../../utils/CheckRole";
@@ -17,8 +17,8 @@ import { update } from "immupdate";
 import TabPage from "../tabs/TabPage";
 import TodosForm from "./TodosForm";
 import Button, { BgColors } from "../ui/Button";
-import useLocationHelpers from "../../hooks/userLocationHelpers";
 import axios from "axios";
+import BackIcon from "../icons/BackIcon";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -49,8 +49,6 @@ export default function TodosFormWrapper({ filter }: Props) {
   const profile = useShallowEqualSelector(profileSelector);
 
   const navigate = useNavigate();
-
-  const locationHelpers = useLocationHelpers();
 
   const regionId = useMemo(() => Number(profile?.RegionId) || 0, [profile]);
 
@@ -296,10 +294,15 @@ export default function TodosFormWrapper({ filter }: Props) {
       headerComponent={
         <div className="d-flex justify-content-between">
           <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
-            onClick={() => locationHelpers.replaceQuery({ tab: TodoFilterTabs.Table, todoId: "0" })}
+            className="px-3 py-2 d-flex align-items-center gap-3"
+            bgColor={"#fff"}
+            onClick={() =>
+              navigate(
+                `/dashboard/todos?tab=table&todoId=0&regionId=${filter.getRegionId()}&categoryId=${filter.getCategoryId()}`,
+              )
+            }
           >
+            <BackIcon />
             Orqaga
           </Button>
         </div>

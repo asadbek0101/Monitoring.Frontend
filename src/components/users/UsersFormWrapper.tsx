@@ -10,6 +10,7 @@ import UsersForm from "./UsersForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
 import { useRegionContext } from "../../api/regions/RegionsApiContext";
+import BackIcon from "../icons/BackIcon";
 
 interface Props {
   readonly filter: UserFilter;
@@ -141,10 +142,11 @@ export default function UsersFormWrapper({ filter }: Props) {
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
           <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
+            className="px-3 py-2 d-flex align-items-center gap-3"
+            bgColor={"#fff"}
             onClick={() => locationHelpers.pushQuery({ tab: UserFilterTabs.UserTable })}
           >
+            <BackIcon />
             Orqaga
           </Button>
         </div>

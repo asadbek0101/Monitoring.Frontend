@@ -92,8 +92,8 @@ export default function RegionCategoriesForm({
                       defaultValue={initialValues.comment}
                     />
                   </div>
-                  <div className="col-12 mt-3 d-flex align-items-center justify-content-end">
-                    <Button type="submit" className="px-3 py-2 text-light" bgColor={BgColors.Green}>
+                  <div className="col-12 mt-5 d-flex align-items-center justify-content-end">
+                    <Button type="submit" className="px-5 py-2 text-light">
                       Yuborish
                     </Button>
                   </div>

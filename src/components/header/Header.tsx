@@ -5,7 +5,6 @@ import { profileSelector } from "../../reducers/authReducer";
 import { CheckRole } from "../../utils/CheckRole";
 
 import LogoutButton from "./LogoutButton";
-import MenuButton from "./MenuButton";
 
 interface Props {
   readonly onChangeMenu: () => void;
@@ -25,11 +24,6 @@ export default function Header({ onChangeMenu, onChangeLogout }: Props) {
           : "2px solid white",
       }}
     >
-      {CheckRole(UserRoles.Programmer, profile) || CheckRole(UserRoles.DepartmentHead, profile) ? (
-        <MenuButton onClick={onChangeMenu} />
-      ) : (
-        <div />
-      )}
       <LogoutButton onClick={onChangeLogout} />
     </header>
   );

@@ -37,6 +37,7 @@ export default function Button({
       style={{
         backgroundColor: bgColor,
         height: heigh,
+        background: bgColor,
       }}
       onClick={onClick && onClick}
     >

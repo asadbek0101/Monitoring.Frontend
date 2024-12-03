@@ -1,4 +1,4 @@
-.select-control{
+.select-control {
   height: 38px;
 }
 
@@ -15,9 +15,7 @@
     padding: 0 !important;
 
     &.select-picker__control--is-disabled {
-
-        background-color: transparent !important;
-
+      background-color: transparent !important;
     }
 
     .select-picker__value-container {
@@ -25,7 +23,7 @@
       align-items: start !important;
     }
 
-    .select-picker__multi-value{
+    .select-picker__multi-value {
       margin: 0 2px !important;
     }
 

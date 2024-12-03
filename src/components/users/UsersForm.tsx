@@ -55,8 +55,8 @@ export default function UsersForm({
                   <InputField name="password" label="Pasport" />
                 </div>
 
-                <div className="col-12 d-flex justify-content-end align-items-center mt-3">
-                  <Button className="px-3 py-2 text-light" bgColor={BgColors.Green} type="submit">
+                <div className="col-12 d-flex justify-content-end align-items-center mt-4">
+                  <Button className="px-5 py-2 text-light" type="submit">
                     Yuborish
                   </Button>
                 </div>

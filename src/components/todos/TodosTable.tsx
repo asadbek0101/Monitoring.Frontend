@@ -68,7 +68,7 @@ export default function TodosTable({ data = [], edit, downloadFile, selectIds, l
         accessor: "createdDate",
         width: 200,
         Cell: (row: any) => {
-          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+          return <>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</>;
         },
       },
       {
@@ -76,7 +76,7 @@ export default function TodosTable({ data = [], edit, downloadFile, selectIds, l
         accessor: "updatedDate",
         width: 200,
         Cell: (row: any) => {
-          return <span>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</span>;
+          return <>{row?.value && moment(row?.value).format("DD-MM-YYYY | HH:mm")}</>;
         },
       },
       {

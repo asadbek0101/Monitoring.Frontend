@@ -16,6 +16,7 @@ import Modal from "../ui/Modal";
 import { GroupBox } from "../ui/GroupBox";
 import YesOrNoModal from "../ui/YesOrNoModal";
 import { toast } from "react-toastify";
+import AddIcon from "../icons/AddIcon";
 
 interface Props {
   readonly filter: CategoryFilter;
@@ -45,13 +46,6 @@ export default function CategoriesTableWrapper({ filter }: Props) {
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
-            onClick={() => locationHelpers.pushQuery({ tab: CategoryFilterTabs.Form })}
-          >
-            Qo'shish
-          </Button>
           <Formik
             initialValues={{ searchValue: filter.getCategoryFilter().searchValue }}
             onSubmit={noop}
@@ -70,6 +64,13 @@ export default function CategoriesTableWrapper({ filter }: Props) {
               </Form>
             )}
           </Formik>
+          <Button
+            className="px-3 py-2 text-light"
+            onClick={() => locationHelpers.pushQuery({ tab: CategoryFilterTabs.Form })}
+          >
+            <AddIcon />
+            Qo'shish
+          </Button>
         </div>
       }
       footerComponent={

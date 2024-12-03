@@ -4,12 +4,11 @@
 
   .sidebar-menu-header {
     width: 100%;
-    height: 50px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3e8cbb;
-    background-image: linear-gradient(-45deg, #06376d, #186abf);
+    background: rgba(245, 247, 250, 1);
 
     span {
       color: #fff;
@@ -20,8 +19,13 @@
 
   .sidebar-menu-menu {
     width: 100%;
-    height: calc(100vh - 50px);
-    // background-color: #333d41;
-    background-image: linear-gradient(-45deg, #06376d, #1f3b58);
+    height: calc(100vh - 75px);
+    background: linear-gradient(180deg, #1a76ce 0%, #299fab 100%);
+    padding: 20px;
+  }
+
+  .sidebar-item-line {
+    border-bottom: 2px solid rgba(212, 213, 217, 0.2);
+    margin-top: 20px;
   }
 }

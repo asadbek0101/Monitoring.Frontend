@@ -1,90 +1,39 @@
 .chart-container {
   width: 100%;
-  height: 100%;
-  background-color: white;
-  padding: 0 30px 40px 30px;
-  box-shadow: 4px 4px 4px rgb(173, 169, 169);
-  border-radius: 4px;
-}
-
-.chart-wrapper {
-  width: 100%;
-  height: 100%;
-}
-
-.chart-header-wrapper {
-  width: 100%;
-  height: 60px;
-}
-
-.chart-header {
-  display: flex;
-}
-
-.chart-header-title {
-  font-size: 16px;
-  clear: both;
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.chart-body-wrapper {
-  width: 100%;
-  height: calc(60% - 60px);
-  min-height: 360px;
-  max-height: 360px;
-}
-
-.chart-body {
-  width: 70%;
-  height: 100%;
+  height: 400px;
   position: relative;
-}
 
-.chart-circle {
-  width: 30%;
-}
-
-.chart-line-wrapper {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  .chart-line {
+  .chart-line-wrapper {
     width: 100%;
-    height: 1px;
-    background-color: rgb(128, 128, 128);
-    font-size: 12px;
-  }
-}
-
-.chart-item-wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  padding: 0 20px;
-
-  .chart-item {
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: end;
-    position: relative;
-    z-index: 1;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    .chart-line {
+      border-bottom: 1px dashed black;
+
+      .chart-line-label {
+        font-size: 12px;
+      }
+    }
   }
-}
 
-.chart-comment-wrapper {
-  padding-top: 10px;
-  border-top: 2px solid rgb(139, 138, 138);
+  .chart-body-wrapper {
+    width: 100%;
+    height: 100%;
+    padding-top: 23px;
+    padding-left: 24px;
+    padding-right: 24px;
 
-  span {
-    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
   }
 }

@@ -1,11 +1,12 @@
 import "./assets/input-control.scss";
 
 import cx from "classnames";
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { I18nCode } from "../../i18n/I18nSchema";
 import { useI18n } from "../../i18n/I18nContext";
 import { InputProps as NativeInputProps, SizeType } from "../../api/AppDto";
+
 import EyeIcon from "../icons/EyeIcon";
 import CloseEye from "../icons/CloseEye";
 
@@ -67,7 +68,7 @@ export function Input({
       className={cx("d-flex flex-column input-control", className)}
       style={{ width: `${width}px`, maxWidth: `${maxWidth}px`, minWidth: `${minWidth}px` }}
     >
-      {Boolean(labelText) && <label className="text-ellipsis mb-1">{labelText}</label>}
+      {Boolean(labelText) && <label className="text-ellipsis mb-1 custom-label">{labelText}</label>}
       <div
         className={cx("input-box", {
           "with-checkbox": withCheckBox,

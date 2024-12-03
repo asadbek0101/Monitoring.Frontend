@@ -1,7 +1,7 @@
 import * as XLSX from "xlsx";
-import Button from "./Button";
-import DonwloadIcon from "../icons/DowloadIcon";
 import { useCallback } from "react";
+import Button from "./Button";
+import ExcelIcon from "../icons/ExcelIcon";
 
 interface Props {
   readonly data: any;
@@ -26,11 +26,11 @@ export default function SaveExcel({ data }: Props) {
     });
 
     XLSX.writeFile(workbook, `${data?.regionName?.substring(0, 28)}.xlsx`);
-  }, [XLSX, data]);
+  }, [data]);
 
   return (
-    <Button className="p-2 d-flex align-items-center" onClick={exportToExcel}>
-      <DonwloadIcon size={20} color="green" />
+    <Button className="p-2 d-flex align-items-center" onClick={exportToExcel} bgColor="#fff">
+      <ExcelIcon size={14} color="green" />
       Excelda yuklash
     </Button>
   );

@@ -1,0 +1,46 @@
+.donut-chart-wrapper {
+  width: 100%;
+  height: 300px;
+
+  display: flex;
+  padding-top: 30px;
+
+  .donut-chart-circle {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+  }
+
+  .custom-plagins {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .custom-plagin-done,
+    .custom-plagin-not-done {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .custom-plagin-not-done-box,
+    .custom-plagin-done-box {
+      width: 14px;
+      height: 14px;
+      border-radius: 50px;
+      background-color: rgba(251, 169, 36, 1);
+    }
+    .custom-plagin-done-box {
+      background-color: rgba(44, 208, 188, 1);
+    }
+  }
+}
+
+.chartjs-tooltip {
+  z-index: 9999 !important; /* Tooltip will always have high z-index */
+}

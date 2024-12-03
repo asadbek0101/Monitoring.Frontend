@@ -8,7 +8,10 @@ interface Props {
 export default function AppAuthContainerLayout({ children }: Props) {
   return (
     <div className="app-auth-container-layout">
-      <div className="auth-logo-image"></div>
+      <img src={require("./assets/logo.png")} className="safe-city-logo" alt="" />
+      <video autoPlay className="app-auth-video" loop muted>
+        <source src={require("./assets/back_video.mp4")} type="video/mp4" />
+      </video>
       <div className="auth-form-wrapper">{children}</div>
     </div>
   );

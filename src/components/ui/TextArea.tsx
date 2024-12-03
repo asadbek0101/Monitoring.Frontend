@@ -62,7 +62,7 @@ export function TextArea({
         style={{
           resize: "none",
           height: `${height}px`,
-          borderRadius: "2px",
+          borderRadius: "8px",
           ...props.style,
         }}
         className={cx(

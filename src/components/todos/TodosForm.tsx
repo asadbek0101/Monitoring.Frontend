@@ -208,13 +208,7 @@ export default function TodosForm({
                       disabled
                     />
                   </div>
-                  <div className="col-4 mt-4">
-                    <FileUpload
-                      setFiles={(value) => onChangeFile(value)}
-                      title="File yuklash"
-                      isThere={Boolean(initialValues.fileName)}
-                    />
-                  </div>
+
                   <div className="col-12 mt-3">
                     <TextAreaField
                       name="_comment"
@@ -223,12 +217,15 @@ export default function TodosForm({
                       defaultValue={initialValues.comment}
                     />
                   </div>
+                  <div className="col-4 mt-4">
+                    <FileUpload
+                      setFiles={(value) => onChangeFile(value)}
+                      title="File yuklash"
+                      isThere={Boolean(initialValues.fileName)}
+                    />
+                  </div>
                   <div className="col-12 mt-3 d-flex justify-content-end">
-                    <Button
-                      type="submit"
-                      className="px-3 py-2 text-light "
-                      bgColor={BgColors.Green}
-                    >
+                    <Button type="submit" className="px-5 py-2 text-light ">
                       Yuborish
                     </Button>
                   </div>

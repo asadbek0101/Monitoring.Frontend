@@ -9,6 +9,7 @@ import TabPage from "../tabs/TabPage";
 import CategoriesForm from "./CategoreisForm";
 import Button, { BgColors } from "../ui/Button";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
+import BackIcon from "../icons/BackIcon";
 
 interface Props {
   readonly filter: CategoryFilter;
@@ -70,10 +71,11 @@ export default function CategoriesFormWrapper({ filter }: Props) {
       headerComponent={
         <div className="d-flex justify-content-between">
           <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
+            className="px-3 py-2 d-flex align-items-center gap-3"
+            bgColor={"#fff"}
             onClick={() => locationHelpers.pushQuery({ tab: CategoryFilterTabs.Table })}
           >
+            <BackIcon />
             Orqaga
           </Button>
         </div>

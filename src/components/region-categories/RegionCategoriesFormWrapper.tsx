@@ -12,6 +12,7 @@ import { RegionCategoryFilter, RegionCategoryFilterTabs } from "../../filters/Re
 import TabPage from "../tabs/TabPage";
 import RegionCategoriesForm from "./RegionCategoriesForm";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
+import BackIcon from "../icons/BackIcon";
 
 interface Props {
   readonly filter: RegionCategoryFilter;
@@ -126,10 +127,11 @@ export default function RegionCategoriesFormWrapper({ filter }: Props) {
       headerComponent={
         <div className="d-flex justify-content-between">
           <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
+            className="px-3 py-2 d-flex align-items-center gap-3"
+            bgColor={"#fff"}
             onClick={() => locationHelpers.pushQuery({ tab: RegionCategoryFilterTabs.Table })}
           >
+            <BackIcon />
             Orqaga
           </Button>
         </div>

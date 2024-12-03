@@ -12,6 +12,8 @@ import UsersIcon from "../icons/UsersIcon";
 import ProductsIcon from "../icons/ProductsIcon";
 import DashboardIcon from "../icons/DashboardIcon";
 import FlagIcon from "../icons/FlagIcon";
+import ProjectIcon from "../icons/ProjectIcon";
+import ProjectForRegion from "../icons/ProjectForRegionIcon";
 
 export default function SidebarMenu() {
   const { translate } = useI18n();
@@ -32,7 +34,7 @@ export default function SidebarMenu() {
             }}
             onClick={() => navigate("/dashboard/statistic")}
           >
-            {profile?.RoleName}
+            <img width="100%" src={require("./assets/logo.png")} alt="" />
           </span>
         )}
       </div>
@@ -48,7 +50,7 @@ export default function SidebarMenu() {
             CheckRole(UserRoles.DepartmentHead, profile) ||
             CheckRole(UserRoles.ChiefSpecialist, profile),
         ) && (
-          <SidebarItem link="categories" icon={<FlagIcon />}>
+          <SidebarItem link="categories" icon={<ProjectIcon />}>
             {translate("Loyihalar")}
           </SidebarItem>
         )}
@@ -66,7 +68,7 @@ export default function SidebarMenu() {
             CheckRole(UserRoles.DepartmentHead, profile) ||
             CheckRole(UserRoles.ChiefSpecialist, profile),
         ) && (
-          <SidebarItem link="reg-cate" icon={<FlagIcon />}>
+          <SidebarItem link="reg-cate" icon={<ProjectForRegion />}>
             {translate("Loyihalar hududlar uchun")}
           </SidebarItem>
         )}
@@ -75,17 +77,8 @@ export default function SidebarMenu() {
             {translate("Foydalanuvchilar")}
           </SidebarItem>
         )}
+        <div className="sidebar-item-line" />
       </div>
     </div>
   );
 }
-
-// {Boolean(
-//   CheckRole(UserRoles.Programmer, profile) ||
-//     CheckRole(UserRoles.DepartmentHead, profile) ||
-//     CheckRole(UserRoles.ChiefSpecialist, profile),
-// ) && (
-//   <SidebarItem link="reg-cate" icon={<FlagIcon />}>
-//     {translate("Loyihalar hududlar uchun")}
-//   </SidebarItem>
-// )}

@@ -8,6 +8,7 @@ import { useRegionContext } from "../../api/regions/RegionsApiContext";
 import { useCategoriesApiContext } from "../../api/categories/CategoriesApiContext";
 import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
 import { profileSelector } from "../../reducers/authReducer";
+import { useNavigate } from "react-router-dom";
 import { CheckRole } from "../../utils/CheckRole";
 import { UserRoles } from "../../api/AppDto";
 import { InputField } from "../form/InputField";
@@ -24,7 +25,7 @@ import Paginator from "../paginator/Paginator";
 import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import AddIcon from "../icons/AddIcon";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -145,17 +146,28 @@ export default function TodosTableWrapper({ filter }: Props) {
     [filter, navigator],
   );
 
+  const onChangeRegionId = useCallback(
+    (event: any) => {
+      navigator(
+        `/dashboard/todos?tab=table&todoId=0&regionId=${event?.value}&categoryId=${filter?.getCategoryId()}`,
+      );
+    },
+    [filter, navigator],
+  );
+
+  const onChangeCategoryId = useCallback(
+    (event: any) => {
+      navigator(
+        `/dashboard/todos?tab=table&todoId=0&regionId=${filter.getRegionId()}&categoryId=${event?.value}`,
+      );
+    },
+    [filter, navigator],
+  );
+
   return (
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Button
-            className="px-3 py-2 text-light"
-            bgColor={BgColors.Green}
-            onClick={() => locationHelpers.pushQuery({ tab: TodoFilterTabs.Form })}
-          >
-            Qo'shish
-          </Button>
           <Formik
             initialValues={{
               regionId: getRegion(filter?.getTodoFilter()?.regionId),
@@ -177,9 +189,7 @@ export default function TodosTableWrapper({ filter }: Props) {
                     width={300}
                     placeholder="Saralash(hudud)"
                     options={regions}
-                    onChanges={(event: any) =>
-                      locationHelpers.pushQuery({ regionId: Number(event.value) })
-                    }
+                    onChanges={onChangeRegionId}
                   />
                 )}
 
@@ -188,9 +198,7 @@ export default function TodosTableWrapper({ filter }: Props) {
                   width={300}
                   placeholder="Saralash(buyruq toifasi)"
                   options={categories}
-                  onChanges={(event: any) =>
-                    locationHelpers.pushQuery({ categoryId: Number(event.value) })
-                  }
+                  onChanges={onChangeCategoryId}
                 />
                 <InputField
                   name="searchValue"
@@ -203,6 +211,13 @@ export default function TodosTableWrapper({ filter }: Props) {
               </Form>
             )}
           </Formik>
+          <Button
+            className="px-3 py-2 text-light d-flex align-items-center"
+            onClick={() => locationHelpers.pushQuery({ tab: TodoFilterTabs.Form })}
+            icon={<AddIcon />}
+          >
+            Qo'shish
+          </Button>
         </div>
       }
       footerComponent={

@@ -1,12 +1,13 @@
-header{
-    width: 100%;
-    height: 100%;
-    background-color: #3E8CBB;
-    background-image: linear-gradient(-45deg, #06376D, #186ABF);
-    border-left: 2px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 40px;
-    box-shadow: 4px 4px 4px rgb(173, 169, 169);
+header {
+  width: 100%;
+  height: 100%;
+  background-color: #3e8cbb;
+  background: rgba(245, 247, 250, 1);
+  border-left: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 40px;
+  box-shadow: 4px 4px 4px rgb(173, 169, 169);
+  border-bottom: 2px solid rgb(224, 224, 224);
 }

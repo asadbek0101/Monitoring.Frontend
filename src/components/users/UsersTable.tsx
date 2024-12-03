@@ -20,42 +20,42 @@ export default function UsersTable({ data = [], edit }: Props) {
       {
         Header: "Hudud",
         accessor: "region",
-        width: 220,
+        width: 240,
       },
       {
         Header: "E-pochta",
         accessor: "email",
-        width: 220,
+        width: 260,
       },
       {
         Header: "Username",
         accessor: "userName",
-        width: 220,
+        width: 260,
       },
       {
         Header: "Ismi",
         accessor: "firstName",
-        width: 220,
+        width: 260,
       },
       {
         Header: "Familiyasi",
         accessor: "lastName",
-        width: 220,
+        width: 260,
       },
       {
         Header: "Otasinig ismi",
         accessor: "middleName",
-        width: 220,
+        width: 260,
       },
       {
         Header: "Telefon nomeri",
         accessor: "phoneNumber",
-        width: 220,
+        width: 260,
       },
       {
         Header: "Lavozimi",
         accessor: "roleName",
-        width: 220,
+        width: 260,
       },
       {
         Header: "...",

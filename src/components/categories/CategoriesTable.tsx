@@ -23,12 +23,12 @@ export default function CategoriesTable({ loading, data = [], edit, selectIds }:
       {
         Header: "Loyiha nomi",
         accessor: "name",
-        width: 360,
+        width: 660,
       },
       {
         Header: "Qo'shimcha ma'lumot",
         accessor: "info",
-        width: 400,
+        width: 600,
       },
       {
         Header: "Yaratilgan vaqti",

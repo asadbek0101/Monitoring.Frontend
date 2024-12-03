@@ -47,37 +47,34 @@ export default function AuthForm({ initialValues, setInitialValues, onSubmit }: 
 
   return (
     <div className="auth-form">
-      <div className="d-flex justify-content-end">
-        <select
-          className="auth-lang-select"
-          name=""
-          id=""
-          value={language}
-          onChange={(event: any) => dispatch(switchLanguage({ language: event.target.value }))}
-        >
-          <option value="uz">Uz</option>
-          <option value="en">En</option>
-          <option value="ru">Ru</option>
-        </select>
-      </div>
       <Formik initialValues={initialValues} onSubmit={() => onSubmit(initialValues)}>
         {() => (
           <Form>
-            <h1>{translate("Kirish")}</h1>
-            <InputField
-              name="username"
-              placeholder={translate("AUTH_FORM_USERNAME_FIELD_TITLE")}
-              value={initialValues.username}
-              onChange={onChangeUsername}
-            />
-            <InputField
-              name="password"
-              placeholder={translate("AUTH_FORM_PASSWORD_FIELD_TITLE")}
-              value={initialValues.password}
-              onChange={onChangePassword}
-              type="password"
-            />
-            <Button type="submit">{translate("SEND_BUTTON_TITLE")}</Button>
+            <div className="auth-form-title">
+              <h5>{translate("Добро пожаловать!")}</h5>
+              <h1>{translate("Войдите в систему")}</h1>
+            </div>
+            <div className="mt-5">
+              <InputField
+                label="Логин"
+                name="username"
+                placeholder={translate("Введите имя пользователя")}
+                value={initialValues.username}
+                onChange={onChangeUsername}
+              />
+              <InputField
+                label="Пароль"
+                name="password"
+                placeholder={translate("********")}
+                value={initialValues.password}
+                onChange={onChangePassword}
+                type="password"
+                className="mt-2"
+              />
+            </div>
+            <div className="mt-5">
+              <Button type="submit">{translate("Вход в систему")}</Button>
+            </div>
           </Form>
         )}
       </Formik>

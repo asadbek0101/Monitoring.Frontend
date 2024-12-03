@@ -8,7 +8,6 @@ import { SelectPickerField } from "../form/SelectPrickerField";
 import { DashboardFilter } from "../../filters/DashboardFilter";
 import { GroupBox } from "../ui/GroupBox";
 
-import Chart from "../charts/Chart";
 import useLocationHelpers from "../../hooks/userLocationHelpers";
 import Modal from "../ui/Modal";
 import DashboardVIew from "./DashboardView";
@@ -17,6 +16,8 @@ import Button, { BgColors } from "../ui/Button";
 import DonwloadIcon from "../icons/DowloadIcon";
 import DashboardPdf from "./DashboardPdf";
 import SaveExcel from "../ui/SaveExcel";
+import ChartBox from "../charts/ChartBox";
+import PdfIcon from "../icons/PdfIcon";
 
 interface Props {
   readonly filter: DashboardFilter;
@@ -190,10 +191,11 @@ export default function DashboardChartsWrapper({ filter }: Props) {
               {!isOneData && (
                 <div className="d-flex gap-3">
                   <Button
-                    className="p-2 d-flex align-items-center"
+                    className="px-3 d-flex align-items-center"
                     onClick={() => setPdfHandler("all")}
+                    bgColor="#fff"
                   >
-                    <DonwloadIcon size={20} color="green" />
+                    <PdfIcon size={14} color="green" />
                     Pdfda yuklash
                   </Button>
                   <SaveExcel data={data} />
@@ -202,8 +204,9 @@ export default function DashboardChartsWrapper({ filter }: Props) {
 
               {isOneData && (
                 <Button
-                  className="p-2 d-flex align-items-center"
+                  className="px-3 d-flex align-items-center"
                   onClick={() => setIsOneData(false)}
+                  bgColor="#fff"
                 >
                   Qaytish
                 </Button>
@@ -221,7 +224,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
           if (category?.todos?.length > 0)
             return (
               <div key={index} className="col-6 my-3">
-                <Chart
+                <ChartBox
                   id={category.id}
                   labels={labels}
                   data={category.todos}
@@ -237,7 +240,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
 
       {isOneData && (
         <div className="col-12 my-3">
-          <Chart
+          <ChartBox
             id={oneData.id}
             labels={labels}
             data={oneData.todos}

@@ -1,18 +1,17 @@
-.app-button{
-        box-shadow: 0 1px 1px 1px rgb(202, 194, 194);
-        border: none;
-        border-radius: 2px;
-        font-weight: 500;
-        font-size: 14px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-        background-color: #fff;
+.app-button {
+  border: none;
+  padding: 9px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #1887e0 0%, #4254be 100%);
 }
 
-.disabled{
-        // background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)) !important;
-        background-image: #fff !important;
+.disabled {
+  // background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)) !important;
+  background-image: #fff !important;
 }

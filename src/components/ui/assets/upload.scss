@@ -1,20 +1,17 @@
 .upload-file-container {
   width: 100%;
   height: 40px;
-  border: 1px solid rgb(230, 228, 228);
   border-radius: 2px;
-  text-align: center;
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
 
   .upload-label {
     width: 100%;
     height: 34px;
     cursor: pointer;
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 10px;
   }
 }

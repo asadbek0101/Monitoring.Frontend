@@ -6,8 +6,8 @@
 
 table {
   max-width: none;
-  table-layout: fixed;
   width: 100%;
+  table-layout: "fixed";
 
   thead {
     position: sticky;
@@ -18,12 +18,25 @@ table {
       font-weight: bold !important;
       height: 60px;
       text-align: center;
+      display: flex;
+      font-family: "Lato", sans-serif !important;
+      font-weight: 500 !important;
+      font-style: normal;
     }
   }
 
   tbody {
     td {
       text-align: center;
+    }
+
+    .my-td {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      font-family: "Lato", sans-serif !important;
+      font-weight: 500 !important;
+      font-style: normal;
     }
   }
 }
@@ -49,4 +62,8 @@ table {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.custom-table-for-layout {
+  table-layout: fixed;
 }
