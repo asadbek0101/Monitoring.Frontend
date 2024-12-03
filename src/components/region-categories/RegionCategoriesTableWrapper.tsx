@@ -21,6 +21,8 @@ import Paginator from "../paginator/Paginator";
 import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
 import AddIcon from "../icons/AddIcon";
+import RegionIcon from "../icons/RegionIcon";
+import ProductsIcon from "../icons/ProductsIcon";
 
 interface Props {
   readonly filter: RegionCategoryFilter;
@@ -128,6 +130,7 @@ export default function RegionCategoriesTableWrapper({ filter }: Props) {
               {() => (
                 <Form className="d-flex gap-3 align-items-center">
                   <SelectPickerField
+                    icon={<RegionIcon size={22} />}
                     name="regionId"
                     width={300}
                     placeholder="Saralash(hudud)"
@@ -137,6 +140,7 @@ export default function RegionCategoriesTableWrapper({ filter }: Props) {
                     }
                   />
                   <SelectPickerField
+                    icon={<ProductsIcon size={22} color="black" />}
                     name="categoryId"
                     width={300}
                     placeholder="Saralash(buyruq toifasi)"

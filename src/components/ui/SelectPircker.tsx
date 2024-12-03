@@ -2,7 +2,7 @@ import "./assets/input-control.scss";
 import "./assets/select-picker.scss";
 
 import cx from "classnames";
-import React, { useMemo } from "react";
+import React, { ReactNode, useMemo } from "react";
 import Select, { Props } from "react-select";
 
 import { PositionType, SizeType } from "../../api/AppDto";
@@ -15,6 +15,8 @@ export interface SelectPickerProps extends Props {
 
   readonly width?: number;
   readonly minWidth?: number;
+
+  readonly icon?: ReactNode;
 
   readonly disabled?: boolean;
   readonly placeholderSelect?: string;
@@ -32,6 +34,7 @@ export function SelectPicker({
   size = SizeType.Medium,
   fluid,
   label,
+  icon,
   width,
   hintText,
   minWidth = 100,
@@ -93,6 +96,7 @@ export function SelectPicker({
           "border border-gray-light text-gray": !hasError,
         })}
       >
+        {Boolean(icon) && icon}
         <Select
           menuPlacement="auto"
           classNamePrefix="select-picker"

@@ -7,7 +7,32 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 20px;
   padding-right: 40px;
   box-shadow: 4px 4px 4px rgb(173, 169, 169);
   border-bottom: 2px solid rgb(224, 224, 224);
+
+  .profile-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      border-radius: 50%;
+    }
+
+    .profile-info-full-name-role-name {
+      display: flex;
+      flex-direction: column;
+      .profile-full-name {
+        font-size: 16px;
+        color: rgba(35, 45, 66, 1);
+      }
+
+      .profile-role-name {
+        font-size: 14px;
+        color: rgba(138, 146, 166, 1);
+      }
+    }
+  }
 }

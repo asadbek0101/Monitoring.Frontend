@@ -30,7 +30,7 @@ export default function RootContainer() {
       navigate("auth");
     }
     if (isAuthorized && locatonPath === "/") {
-      navigate("/dashboard/objects");
+      navigate("/dashboard/statistic");
     }
   }, [isAuthorized, navigate, locatonPath]);
 

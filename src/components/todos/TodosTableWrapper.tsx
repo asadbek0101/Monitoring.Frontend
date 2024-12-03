@@ -26,6 +26,8 @@ import Modal from "../ui/Modal";
 import YesOrNoModal from "../ui/YesOrNoModal";
 import axios from "axios";
 import AddIcon from "../icons/AddIcon";
+import RegionIcon from "../icons/RegionIcon";
+import ProductsIcon from "../icons/ProductsIcon";
 
 interface Props {
   readonly filter: TodoFilter;
@@ -195,6 +197,7 @@ export default function TodosTableWrapper({ filter }: Props) {
                       CheckRole(UserRoles.ChiefSpecialist, profile),
                   ) && (
                     <SelectPickerField
+                      icon={<RegionIcon size={22} />}
                       name="regionId"
                       width={300}
                       placeholder="Saralash(hudud)"
@@ -204,6 +207,7 @@ export default function TodosTableWrapper({ filter }: Props) {
                   )}
 
                   <SelectPickerField
+                    icon={<ProductsIcon size={22} color="black" />}
                     name="categoryId"
                     width={300}
                     placeholder="Saralash(buyruq toifasi)"

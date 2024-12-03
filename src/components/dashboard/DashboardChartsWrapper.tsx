@@ -18,6 +18,7 @@ import DashboardPdf from "./DashboardPdf";
 import SaveExcel from "../ui/SaveExcel";
 import ChartBox from "../charts/ChartBox";
 import PdfIcon from "../icons/PdfIcon";
+import RegionIcon from "../icons/RegionIcon";
 
 interface Props {
   readonly filter: DashboardFilter;
@@ -183,6 +184,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
           {() => (
             <Form className="d-flex align-items-center justify-content-between">
               <SelectPickerField
+                icon={<RegionIcon size={24} />}
                 name="regionId"
                 width={400}
                 options={regions}
