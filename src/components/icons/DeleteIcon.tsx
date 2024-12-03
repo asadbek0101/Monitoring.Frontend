@@ -1,16 +1,29 @@
-
-interface Props{
-    readonly size?: number | string | undefined;
-    readonly color?: string;
+interface Props {
+  readonly size?: number | string | undefined;
+  readonly color?: string;
 }
 
-export default function DeleteIcon({
-    size = 16,
-    color = "white"
-}:Props){
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" fill={color} width={size }  height={size} viewBox="0 0 448 512">
-            <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
-        </svg>
-    )
+export default function DeleteIcon({ size = 16, color = "white" }: Props) {
+  return (
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M0 3.52941H16V5.88235H14.8571V18.5294C14.8571 19.3416 14.2176 20 13.4286 20H2.57143C1.78245 20 1.14286 19.3416 1.14286 18.5294V5.88235H0V3.52941ZM3.42857 5.88235V17.6471H12.5714V5.88235H3.42857Z"
+        fill="#515151"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M11.4286 2.35294H4.57143V0H11.4286V2.35294Z"
+        fill="#515151"
+      />
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M5.71429 16.4706V7.05882H6.85714V16.4706H5.71429ZM9.14286 16.4706V7.05882H10.2857V16.4706H9.14286Z"
+        fill="#515151"
+      />
+    </svg>
+  );
 }

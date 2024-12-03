@@ -98,18 +98,18 @@ export default function TodosTable({ data = [], edit, downloadFile, selectIds, l
             <div className="d-flex justify-content-center gap-2">
               <Button
                 className="text-light p-2"
-                bgColor={BgColors.Yellow}
+                bgColor={"#fff"}
                 onClick={() => edit(row?.row?.original?.id)}
               >
-                <PencilIcon />
+                <PencilIcon color="black" />
               </Button>
               {row?.row?.original?.fileName && (
                 <Button
                   className="text-light p-2"
-                  bgColor={BgColors.Green}
+                  bgColor={"#fff"}
                   onClick={() => downloadFile(row?.row?.original?.fileName)}
                 >
-                  <DonwloadIcon />
+                  <DonwloadIcon color="black" />
                 </Button>
               )}
             </div>

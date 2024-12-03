@@ -7,11 +7,12 @@ import { useCallback } from "react";
 import { update } from "immupdate";
 import { InputField } from "../form/InputField";
 import { TextAreaField } from "../form/TextAreaField";
-import Button, { BgColors } from "../ui/Button";
-import FileUpload from "../ui/FileUpload";
 import { CheckRole } from "../../utils/CheckRole";
 import { useShallowEqualSelector } from "../../hooks/useShallowSelector";
 import { profileSelector } from "../../reducers/authReducer";
+
+import Button from "../ui/Button";
+import FileUpload from "../ui/FileUpload";
 
 interface Props {
   readonly todoId: string | number;
@@ -148,7 +149,8 @@ export default function TodosForm({
       {() => (
         <Form>
           <div className="row p-4">
-            <div className="col-12">
+            <div className="col-2" />
+            <div className="col-8">
               <GroupBox title="Tadbir yaratish">
                 <div className="row">
                   <div className="col-4">
@@ -217,7 +219,7 @@ export default function TodosForm({
                       defaultValue={initialValues.comment}
                     />
                   </div>
-                  <div className="col-4 mt-4">
+                  <div className="col-12 mt-4">
                     <FileUpload
                       setFiles={(value) => onChangeFile(value)}
                       title="File yuklash"
@@ -232,6 +234,7 @@ export default function TodosForm({
                 </div>
               </GroupBox>
             </div>
+            <div className="col-2" />
           </div>
         </Form>
       )}

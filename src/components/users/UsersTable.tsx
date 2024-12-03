@@ -66,10 +66,10 @@ export default function UsersTable({ data = [], edit }: Props) {
             <div className="d-flex justify-content-center gap-2">
               <Button
                 className="text-light p-2"
-                bgColor={BgColors.Yellow}
+                bgColor="#fff"
                 onClick={() => edit(row?.row?.original?.id)}
               >
-                <PencilIcon />
+                <PencilIcon color="black" />
               </Button>
             </div>
           );

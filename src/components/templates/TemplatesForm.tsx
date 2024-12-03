@@ -5,7 +5,7 @@ import { InputField } from "../form/InputField";
 import { useCallback } from "react";
 import { update } from "immupdate";
 import { TextAreaField } from "../form/TextAreaField";
-import Button, { BgColors } from "../ui/Button";
+import Button from "../ui/Button";
 
 interface Props {
   readonly initialValues: TemplateInitialProps;
@@ -41,6 +41,8 @@ export default function TemplatesForm({ initialValues, setInitialValues, onSubmi
       {() => (
         <Form>
           <div className="row p-4">
+            <div className="col-3" />
+
             <div className="col-6">
               <GroupBox title="Shablon yaratish">
                 <div className="row">
@@ -68,6 +70,7 @@ export default function TemplatesForm({ initialValues, setInitialValues, onSubmi
                 </div>
               </GroupBox>
             </div>
+            <div className="col-3" />
           </div>
         </Form>
       )}

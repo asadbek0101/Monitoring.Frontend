@@ -16,7 +16,7 @@ import { update } from "immupdate";
 
 import TabPage from "../tabs/TabPage";
 import TodosForm from "./TodosForm";
-import Button, { BgColors } from "../ui/Button";
+import Button from "../ui/Button";
 import axios from "axios";
 import BackIcon from "../icons/BackIcon";
 

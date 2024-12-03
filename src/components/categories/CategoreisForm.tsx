@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { update } from "immupdate";
 import { InputField } from "../form/InputField";
 import { TextAreaField } from "../form/TextAreaField";
-import Button, { BgColors } from "../ui/Button";
+import Button from "../ui/Button";
 
 interface Props {
   readonly initialValues: CategoryInitialProps;
@@ -41,6 +41,8 @@ export default function CategoriesForm({ initialValues, setInitialValues, onSubm
       {() => (
         <Form>
           <div className="row p-4">
+            <div className="col-3" />
+
             <div className="col-6">
               <GroupBox title="Loyiha yaratish">
                 <div className="row">
@@ -70,6 +72,7 @@ export default function CategoriesForm({ initialValues, setInitialValues, onSubm
                 </div>
               </GroupBox>
             </div>
+            <div className="col-3" />
           </div>
         </Form>
       )}

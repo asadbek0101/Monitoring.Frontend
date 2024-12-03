@@ -1,5 +1,7 @@
 .paginator-wrapper {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   gap: 20px;
 
   .paginator-select {
@@ -9,6 +11,7 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    border: 1px solid rgba(162, 161, 168, 0.2);
   }
 
   .button-group {
@@ -26,6 +29,7 @@
       border: none;
       color: black;
       border-radius: 6px;
+      border: 1px solid rgba(162, 161, 168, 0.2);
     }
   }
 }

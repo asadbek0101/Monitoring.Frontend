@@ -104,66 +104,85 @@ export default function RegionCategoriesTableWrapper({ filter }: Props) {
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Formik
-            initialValues={{
-              regionId: getRegion(filter?.getRegionCategoryFilter()?.regionId),
-              categoryId: getCategory(filter?.getRegionCategoryFilter()?.categoryId),
-              searchValue: filter?.getRegionCategoryFilter()?.searchValue,
-            }}
-            onSubmit={noop}
-            enableReinitialize={true}
-          >
-            {() => (
-              <Form className="d-flex gap-3 align-items-center">
-                <SelectPickerField
-                  name="regionId"
-                  width={300}
-                  placeholder="Saralash(hudud)"
-                  options={regions}
-                  onChanges={(event: any) =>
-                    locationHelpers.pushQuery({ regionId: Number(event.value) })
-                  }
-                />
-                <SelectPickerField
-                  name="categoryId"
-                  width={300}
-                  placeholder="Saralash(buyruq toifasi)"
-                  options={categories}
-                  onChanges={(event: any) =>
-                    locationHelpers.pushQuery({ categoryId: Number(event.value) })
-                  }
-                />
-                <InputField
-                  name="searchValue"
-                  width={300}
-                  placeholder="Qidirish..."
-                  value={filter.getRegionCategoryFilter().searchValue}
-                  onChange={(event) =>
-                    locationHelpers.pushQuery({ searchValue: event.target.value })
-                  }
-                />
-              </Form>
-            )}
-          </Formik>
-          <Button
-            className="px-3 py-2 text-light"
-            onClick={() => locationHelpers.pushQuery({ tab: RegionCategoryFilterTabs.Form })}
-          >
-            <AddIcon />
-            Qo'shish
-          </Button>
+          <div className="d-flex justify-content-between align-items-center gap-3">
+            <Button
+              disabled={!(deleteDocuments && deleteDocuments?.length > 0)}
+              onClick={() => setDeleteModal(true)}
+              className="py-2 px-2 text-light"
+              bgColor={
+                deleteDocuments && deleteDocuments?.length > 0 ? BgColors.Red : BgColors.White
+              }
+            >
+              <DeleteIcon
+                color={deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "#000"}
+              />
+            </Button>
+            <Formik
+              initialValues={{
+                regionId: getRegion(filter?.getRegionCategoryFilter()?.regionId),
+                categoryId: getCategory(filter?.getRegionCategoryFilter()?.categoryId),
+              }}
+              onSubmit={noop}
+              enableReinitialize={true}
+            >
+              {() => (
+                <Form className="d-flex gap-3 align-items-center">
+                  <SelectPickerField
+                    name="regionId"
+                    width={300}
+                    placeholder="Saralash(hudud)"
+                    options={regions}
+                    onChanges={(event: any) =>
+                      locationHelpers.pushQuery({ regionId: Number(event.value) })
+                    }
+                  />
+                  <SelectPickerField
+                    name="categoryId"
+                    width={300}
+                    placeholder="Saralash(buyruq toifasi)"
+                    options={categories}
+                    onChanges={(event: any) =>
+                      locationHelpers.pushQuery({ categoryId: Number(event.value) })
+                    }
+                  />
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <div className="d-flex justify-content-between align-items-center gap-3">
+            <Formik
+              initialValues={{
+                searchValue: filter?.getRegionCategoryFilter()?.searchValue,
+              }}
+              onSubmit={noop}
+              enableReinitialize={true}
+            >
+              {() => (
+                <Form className="d-flex gap-3 align-items-center">
+                  <InputField
+                    name="searchValue"
+                    width={300}
+                    placeholder="Qidirish..."
+                    value={filter.getRegionCategoryFilter().searchValue}
+                    onChange={(event) =>
+                      locationHelpers.pushQuery({ searchValue: event.target.value })
+                    }
+                  />
+                </Form>
+              )}
+            </Formik>
+            <Button
+              className="px-3 py-2 text-light"
+              onClick={() => locationHelpers.pushQuery({ tab: RegionCategoryFilterTabs.Form })}
+            >
+              <AddIcon />
+              Qo'shish
+            </Button>
+          </div>
         </div>
       }
       footerComponent={
         <div className="d-flex justify-content-between align-items-center mt-4 pb-3">
-          <Button
-            disabled={!(deleteDocuments && deleteDocuments?.length > 0)}
-            onClick={() => setDeleteModal(true)}
-            className="py-2 px-2 text-light"
-            bgColor={deleteDocuments && deleteDocuments?.length > 0 ? BgColors.Red : BgColors.White}
-          >
-            <DeleteIcon color={deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "#000"} />
-          </Button>
           <Paginator
             filter={filter}
             totalPageCount={data?.totalPageCount}

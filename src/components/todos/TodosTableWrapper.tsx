@@ -168,68 +168,85 @@ export default function TodosTableWrapper({ filter }: Props) {
     <TabPage
       headerComponent={
         <div className="d-flex justify-content-between align-items-center">
-          <Formik
-            initialValues={{
-              regionId: getRegion(filter?.getTodoFilter()?.regionId),
-              categoryId: getCategory(filter?.getTodoFilter()?.categoryId),
-              searchValue: filter?.getTodoFilter()?.searchValue,
-            }}
-            onSubmit={noop}
-            enableReinitialize={true}
-          >
-            {() => (
-              <Form className="d-flex gap-3 align-items-center">
-                {Boolean(
-                  CheckRole(UserRoles.Programmer, profile) ||
-                    CheckRole(UserRoles.DepartmentHead, profile) ||
-                    CheckRole(UserRoles.ChiefSpecialist, profile),
-                ) && (
-                  <SelectPickerField
-                    name="regionId"
-                    width={300}
-                    placeholder="Saralash(hudud)"
-                    options={regions}
-                    onChanges={onChangeRegionId}
-                  />
-                )}
+          <div className="d-flex justify-content-between align-items-center gap-2">
+            <Button
+              bgColor={deleteDocuments && deleteDocuments?.length > 0 ? BgColors.Red : "#fff"}
+              disabled={!(deleteDocuments && deleteDocuments?.length > 0)}
+              onClick={() => setDeleteModal(true)}
+            >
+              <DeleteIcon
+                color={deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "#000"}
+              />
+            </Button>
+            <Formik
+              initialValues={{
+                regionId: getRegion(filter?.getTodoFilter()?.regionId),
+                categoryId: getCategory(filter?.getTodoFilter()?.categoryId),
+                searchValue: filter?.getTodoFilter()?.searchValue,
+              }}
+              onSubmit={noop}
+              enableReinitialize={true}
+            >
+              {() => (
+                <Form className="d-flex gap-3 align-items-center">
+                  {Boolean(
+                    CheckRole(UserRoles.Programmer, profile) ||
+                      CheckRole(UserRoles.DepartmentHead, profile) ||
+                      CheckRole(UserRoles.ChiefSpecialist, profile),
+                  ) && (
+                    <SelectPickerField
+                      name="regionId"
+                      width={300}
+                      placeholder="Saralash(hudud)"
+                      options={regions}
+                      onChanges={onChangeRegionId}
+                    />
+                  )}
 
-                <SelectPickerField
-                  name="categoryId"
-                  width={300}
-                  placeholder="Saralash(buyruq toifasi)"
-                  options={categories}
-                  onChanges={onChangeCategoryId}
-                />
-                <InputField
-                  name="searchValue"
-                  width={300}
-                  placeholder="Qidirish..."
-                  onChange={(event) =>
-                    locationHelpers.pushQuery({ searchValue: event.target.value })
-                  }
-                />
-              </Form>
-            )}
-          </Formik>
-          <Button
-            className="px-3 py-2 text-light d-flex align-items-center"
-            onClick={() => locationHelpers.pushQuery({ tab: TodoFilterTabs.Form })}
-            icon={<AddIcon />}
-          >
-            Qo'shish
-          </Button>
+                  <SelectPickerField
+                    name="categoryId"
+                    width={300}
+                    placeholder="Saralash(buyruq toifasi)"
+                    options={categories}
+                    onChanges={onChangeCategoryId}
+                  />
+                </Form>
+              )}
+            </Formik>
+          </div>
+          <div className="d-flex justify-content-between align-items-center gap-2">
+            <Formik
+              initialValues={{
+                searchValue: filter?.getTodoFilter()?.searchValue,
+              }}
+              onSubmit={noop}
+              enableReinitialize={true}
+            >
+              {() => (
+                <Form className="d-flex gap-3 align-items-center">
+                  <InputField
+                    name="searchValue"
+                    width={300}
+                    placeholder="Qidirish..."
+                    onChange={(event) =>
+                      locationHelpers.pushQuery({ searchValue: event.target.value })
+                    }
+                  />
+                </Form>
+              )}
+            </Formik>
+            <Button
+              className="px-3 py-2 text-light d-flex align-items-center"
+              onClick={() => locationHelpers.pushQuery({ tab: TodoFilterTabs.Form })}
+              icon={<AddIcon />}
+            >
+              Qo'shish
+            </Button>
+          </div>
         </div>
       }
       footerComponent={
         <div className="d-flex justify-content-between align-items-center mt-4 pb-3">
-          <Button
-            disabled={!(deleteDocuments && deleteDocuments?.length > 0)}
-            onClick={() => setDeleteModal(true)}
-            className="py-2 px-2 text-light"
-            bgColor={deleteDocuments && deleteDocuments?.length > 0 ? BgColors.Red : BgColors.White}
-          >
-            <DeleteIcon color={deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "#000"} />
-          </Button>
           <Paginator
             filter={filter}
             totalPageCount={data?.totalPageCount}

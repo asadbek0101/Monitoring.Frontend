@@ -1,9 +1,23 @@
 .box-group {
-  border-radius: 8px;
-  border: 2px solid rgb(202, 202, 202);
+  width: 100%;
 
+  .group-title-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   .group-title {
-    top: -16px;
-    left: 16px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+
+  .group-box-body {
+    margin-top: 20px;
   }
 }

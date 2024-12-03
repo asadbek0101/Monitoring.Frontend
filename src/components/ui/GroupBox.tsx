@@ -27,12 +27,12 @@ export function GroupBox({ title, className, children, contentClassName }: Props
   return (
     <div className={cx("position-relative p-4 box-group", className)}>
       {Boolean(titleText) && (
-        <span className="px-2 bg-white fs-5 font-weight-bold position-absolute group-title">
-          {titleText?.toUpperCase()}
-        </span>
+        <div className="group-title-wrapper">
+          <span className="px-2 bg-white fs-5 group-title">{titleText?.toUpperCase()}</span>
+        </div>
       )}
 
-      <div className={contentClassName}>{children}</div>
+      <div className={`${contentClassName} group-box-body`}>{children}</div>
     </div>
   );
 }

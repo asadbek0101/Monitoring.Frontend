@@ -74,7 +74,7 @@ export default function Table({ columns, data = [], loading, selectRowCheckbox }
 
   return (
     <div className="table-wrapper">
-      <table {...getTableProps()} className="table table-bordered custom-table-for-layout">
+      <table {...getTableProps()} className="table  custom-table-for-layout">
         <thead>
           {headerGroups.map((headerGroup: any, i: any) => (
             <tr key={i} {...headerGroup.getHeaderGroupProps()}>
@@ -102,14 +102,6 @@ export default function Table({ columns, data = [], loading, selectRowCheckbox }
                   className="d-flex align-items-center justify-content-center"
                 >
                   {column.render("Header")}
-
-                  <div
-                    style={{
-                      width: column.width,
-                    }}
-                    {...column.getResizerProps()}
-                    className={`resizer`}
-                  />
                 </th>
               ))}
             </tr>

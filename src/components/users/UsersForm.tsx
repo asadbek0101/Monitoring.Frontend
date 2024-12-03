@@ -25,43 +25,47 @@ export default function UsersForm({
       {() => (
         <Form>
           <div className="row p-4">
-            <GroupBox title="Foydalanuvchi yaratish">
-              <div className="row">
-                <div className="col-4">
-                  <InputField name="firstName" label="Ismi" />
-                </div>
-                <div className="col-4">
-                  <InputField name="lastName" label="Familiyasi" />
-                </div>
-                <div className="col-4">
-                  <InputField name="middleName" label="Otasining ismi" />
-                </div>
-                <div className="col-4 mt-3">
-                  <InputField name="email" label="E-pochta" />
-                </div>
-                <div className="col-4 mt-3">
-                  <InputField name="phoneNumber" label="Telefon raqami" />
-                </div>
-                <div className="col-4 mt-3">
-                  <SelectPickerField name="role" label="Lavozim" options={roles} />
-                </div>
-                <div className="col-4 mt-3">
-                  <SelectPickerField name="region" label="Hudud" options={regions} />
-                </div>
-                <div className="col-4 mt-3">
-                  <InputField name="userName" label="Username" />
-                </div>
-                <div className="col-4 mt-3">
-                  <InputField name="password" label="Pasport" />
-                </div>
+            <div className="col-2" />
+            <div className="col-8">
+              <GroupBox title="Foydalanuvchi yaratish">
+                <div className="row">
+                  <div className="col-4">
+                    <InputField name="firstName" label="Ismi" />
+                  </div>
+                  <div className="col-4">
+                    <InputField name="lastName" label="Familiyasi" />
+                  </div>
+                  <div className="col-4">
+                    <InputField name="middleName" label="Otasining ismi" />
+                  </div>
+                  <div className="col-4 mt-3">
+                    <InputField name="email" label="E-pochta" />
+                  </div>
+                  <div className="col-4 mt-3">
+                    <InputField name="phoneNumber" label="Telefon raqami" />
+                  </div>
+                  <div className="col-4 mt-3">
+                    <SelectPickerField name="role" label="Lavozim" options={roles} />
+                  </div>
+                  <div className="col-4 mt-3">
+                    <SelectPickerField name="region" label="Hudud" options={regions} />
+                  </div>
+                  <div className="col-4 mt-3">
+                    <InputField name="userName" label="Username" />
+                  </div>
+                  <div className="col-4 mt-3">
+                    <InputField name="password" label="Pasport" />
+                  </div>
 
-                <div className="col-12 d-flex justify-content-end align-items-center mt-4">
-                  <Button className="px-5 py-2 text-light" type="submit">
-                    Yuborish
-                  </Button>
+                  <div className="col-12 d-flex justify-content-end align-items-center mt-4">
+                    <Button className="px-5 py-2 text-light" type="submit">
+                      Yuborish
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </GroupBox>
+              </GroupBox>
+            </div>
+            <div className="col-2" />
           </div>
         </Form>
       )}

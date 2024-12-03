@@ -6,7 +6,7 @@ import { RegionCategoryInitialProps } from "../../api/region-categoies/RegionCat
 import { SelectBoxProps } from "../../api/AppDto";
 import { useCallback } from "react";
 import { update } from "immupdate";
-import Button, { BgColors } from "../ui/Button";
+import Button from "../ui/Button";
 
 interface Props {
   readonly regions: SelectBoxProps[];
@@ -63,10 +63,11 @@ export default function RegionCategoriesForm({
       {() => (
         <Form>
           <div className="row p-4">
+            <div className="col-3" />
             <div className="col-6">
               <GroupBox title="Hudud uchun loyiha qo'shish">
                 <div className="row">
-                  <div className="col-12">
+                  <div className="col-6">
                     <SelectPickerField
                       name="regionId"
                       label="Hudud nomi"
@@ -75,7 +76,7 @@ export default function RegionCategoriesForm({
                       onChanges={onChangeRegionId}
                     />
                   </div>
-                  <div className="col-12 mt-3">
+                  <div className="col-6">
                     <SelectPickerField
                       name="categoryId"
                       label="Loyiha nomi"
@@ -100,6 +101,7 @@ export default function RegionCategoriesForm({
                 </div>
               </GroupBox>
             </div>
+            <div className="col-3" />
           </div>
         </Form>
       )}

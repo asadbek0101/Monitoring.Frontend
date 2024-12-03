@@ -1,4 +1,5 @@
 import "./assets/paginator.scss";
+
 import { useCallback, useMemo } from "react";
 import { AppFilter } from "../../filters/AppFilter";
 
@@ -48,22 +49,30 @@ export default function Paginator({ filter, totalPageCount, totalRowCount }: Pro
         <option value="80">80</option>
         <option value="100">100</option>
       </select>
-      <div className="d-flex align-items-center">
-        {pageCount} : {totalPageCount}
-      </div>
+
       <div className="button-group">
         <button onClick={() => prev()}>
           <LeftIcon color="#000" />
         </button>
-        <button>{pageCount}</button>
+        {Array.from({ length: totalPageCount }, (_, index) => {
+          const _index = index + 1;
+          if (_index === pageCount - 1 || _index === pageCount || _index === pageCount + 1) {
+            return (
+              <button
+                style={{
+                  backgroundColor: pageCount === index + 1 ? "#F5F7FA" : "",
+                }}
+              >
+                {index + 1}
+              </button>
+            );
+          }
+        })}
         <button onClick={() => next()}>
           <RightIcon color="#000" />
         </button>
       </div>
-      <div className="d-flex align-items-center">
-        <span>Hammasi </span>
-        <span className="ms-2">{totalRowCount}</span>
-      </div>
+      <div></div>
     </div>
   );
 }
