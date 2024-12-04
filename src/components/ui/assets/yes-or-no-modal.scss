@@ -1,0 +1,16 @@
+.yes-or-no-modal {
+  padding: 0 20px;
+  .yes-or-no-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .yes-or-no-modal-title {
+    margin-top: 40px;
+    span {
+      font-size: 18px;
+      font-family: "Onest", sans-serif;
+      font-weight: 400;
+    }
+  }
+}

@@ -172,12 +172,14 @@ export default function TodosTableWrapper({ filter }: Props) {
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex justify-content-between align-items-center gap-2">
             <Button
-              bgColor={deleteDocuments && deleteDocuments?.length > 0 ? BgColors.Red : "#fff"}
+              bgColor={deleteDocuments && deleteDocuments?.length > 0 ? "" : "#fff"}
               disabled={!(deleteDocuments && deleteDocuments?.length > 0)}
               onClick={() => setDeleteModal(true)}
             >
               <DeleteIcon
-                color={deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "#000"}
+                color={
+                  deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "rgba(85, 88, 102, 1)"
+                }
               />
             </Button>
             <Formik
@@ -207,7 +209,7 @@ export default function TodosTableWrapper({ filter }: Props) {
                   )}
 
                   <SelectPickerField
-                    icon={<ProductsIcon size={22} color="black" />}
+                    icon={<ProductsIcon size={22} color="rgba(85, 88, 102, 1)" />}
                     name="categoryId"
                     width={300}
                     placeholder="Saralash(buyruq toifasi)"
@@ -270,12 +272,12 @@ export default function TodosTableWrapper({ filter }: Props) {
         show={deleteModal}
         closeHandler={() => setDeleteModal(false)}
         className="d-flex justify-content-center align-items-center"
-        contentClassName="rounded p-4"
+        contentClassName="rounded p-2"
         width="500px"
       >
         <GroupBox>
           <YesOrNoModal
-            title="Tanlanganlarni haqiqatdan ham uchurmoqchimisiz?"
+            title="Tanlanganlarni haqiqatdan ham o'chirmoqchimisiz?"
             setResponse={(value: string) => {
               if (value === "YES") {
                 const json: any = {

@@ -115,7 +115,7 @@ export default function Table({ columns, data = [], loading, selectRowCheckbox }
               return (
                 <tr key={index} {...row.getRowProps()} className="tr">
                   {selectRowCheckbox ? (
-                    <td className="my-td">
+                    <td className={`my-td ${row.isChecked ? "active-td-custom" : ""}`}>
                       <input
                         type="checkbox"
                         name={index.toString()}
@@ -124,11 +124,17 @@ export default function Table({ columns, data = [], loading, selectRowCheckbox }
                       />
                     </td>
                   ) : (
-                    <td className="my-td">{index + 1}.</td>
+                    <td className={`my-td ${row.isChecked ? "active-td-custom" : ""}`}>
+                      {index + 1}.
+                    </td>
                   )}{" "}
                   {row.cells.map((cell: any, index: number) => {
                     return (
-                      <td key={index} {...cell.getCellProps()} className="absolutely-center my-td">
+                      <td
+                        key={index}
+                        {...cell.getCellProps()}
+                        className={`absolutely-center my-td ${row.isChecked ? "active-td-custom" : ""} `}
+                      >
                         {cell.render("Cell")}
                       </td>
                     );

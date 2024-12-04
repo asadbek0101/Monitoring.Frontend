@@ -48,15 +48,14 @@ export default function CategoriesTableWrapper({ filter }: Props) {
         <div className="d-flex justify-content-between align-items-center">
           <div>
             <Button
+              bgColor={deleteDocuments && deleteDocuments?.length > 0 ? "" : "#fff"}
               disabled={!(deleteDocuments && deleteDocuments?.length > 0)}
               onClick={() => setDeleteModal(true)}
-              className="py-2 px-2 text-light"
-              bgColor={
-                deleteDocuments && deleteDocuments?.length > 0 ? BgColors.Red : BgColors.White
-              }
             >
               <DeleteIcon
-                color={deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "#000"}
+                color={
+                  deleteDocuments && deleteDocuments?.length > 0 ? "#fff" : "rgba(85, 88, 102, 1)"
+                }
               />
             </Button>
           </div>
@@ -111,7 +110,7 @@ export default function CategoriesTableWrapper({ filter }: Props) {
         show={deleteModal}
         closeHandler={() => setDeleteModal(false)}
         className="d-flex justify-content-center align-items-center"
-        contentClassName="rounded p-4"
+        contentClassName="rounded p-2"
         width="500px"
       >
         <GroupBox>
