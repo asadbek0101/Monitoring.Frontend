@@ -273,7 +273,7 @@ export default function TodosTableWrapper({ filter }: Props) {
         closeHandler={() => setDeleteModal(false)}
         className="d-flex justify-content-center align-items-center"
         contentClassName="rounded p-2"
-        width="500px"
+        width="400px"
       >
         <GroupBox>
           <YesOrNoModal
