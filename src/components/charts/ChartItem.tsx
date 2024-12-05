@@ -4,9 +4,11 @@ import { colors } from "../../constants/Colors";
 interface Props {
   readonly heigt: string;
   readonly index: number;
+
+  readonly setChartItem: (index: number) => void;
 }
 
-export default function ChartItem({ heigt, index }: Props) {
+export default function ChartItem({ heigt, index, setChartItem }: Props) {
   return (
     <div
       className="chart-item"
@@ -22,6 +24,10 @@ export default function ChartItem({ heigt, index }: Props) {
           width: "100%",
           maxWidth: "130px",
           backgroundColor: `${colors[index]}`,
+        }}
+        onClick={() => {
+          console.log("Asadbek");
+          setChartItem(index);
         }}
       />
     </div>

@@ -14,8 +14,6 @@ interface Props {
 export default function Header({ onChangeMenu, onChangeLogout }: Props) {
   const profile = useShallowEqualSelector(profileSelector);
 
-  console.log(profile);
-
   return (
     <header
       style={{

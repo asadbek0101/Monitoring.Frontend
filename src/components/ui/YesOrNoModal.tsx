@@ -25,13 +25,13 @@ export default function YesOrNoModal({ title, setResponse }: Props) {
           onClick={() => setResponse && setResponse("YES")}
           bgColor="rgba(230, 234, 243, 1)"
         >
-          {translate("YES_BUTTON_TITLE")}
+          Ha
         </Button>
         <Button
           className="px-5 py-2 ms-2 text-light"
           onClick={() => setResponse && setResponse("NO")}
         >
-          {translate("NO_BUTTON_TITLE")}
+          Yo'q
         </Button>
       </div>
     </div>

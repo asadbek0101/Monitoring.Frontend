@@ -6,6 +6,7 @@ import BoxIcon from "../icons/BoxIcon";
 import Chart from "./Chart";
 import ChartInfoGroup from "./ChartInfoGroup";
 import DonutChart from "./DonutChart";
+import { useState } from "react";
 
 export interface ChartItemProps {
   readonly id: number;
@@ -36,6 +37,8 @@ export default function ChartBox({
   setChartForOne,
   downloadFile,
 }: Props) {
+  const [activeChartItem, setActiveChartItem] = useState(0);
+
   if (data.length === 0) {
     return null;
   }
@@ -88,10 +91,10 @@ export default function ChartBox({
         </div>
 
         <div className="mt-1">
-          <Chart labels={labels} data={data} />
+          <Chart labels={labels} data={data} setChartItem={setActiveChartItem} />
         </div>
         <div className="mt-5">
-          <ChartInfoGroup data={data} />
+          <ChartInfoGroup activeItem={activeChartItem} data={data} />
         </div>
         {Boolean(comment) && (
           <div className="chart-comment-wrapper">

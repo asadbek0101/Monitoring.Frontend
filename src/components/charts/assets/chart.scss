@@ -32,6 +32,9 @@
     padding-left: 24px;
     padding-right: 24px;
 
+    position: absolute;
+    z-index: 1;
+
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
