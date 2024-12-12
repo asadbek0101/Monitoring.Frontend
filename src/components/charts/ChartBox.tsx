@@ -1,4 +1,5 @@
 import "./assets/chart-box.scss";
+import { useState } from "react";
 
 import Button from "../ui/Button";
 import EyeIcon from "../icons/EyeIcon";
@@ -6,7 +7,6 @@ import BoxIcon from "../icons/BoxIcon";
 import Chart from "./Chart";
 import ChartInfoGroup from "./ChartInfoGroup";
 import DonutChart from "./DonutChart";
-import { useState } from "react";
 
 export interface ChartItemProps {
   readonly id: number;

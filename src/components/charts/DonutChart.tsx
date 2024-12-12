@@ -5,10 +5,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const CustomContent = () => (
-  <img width={140} height={140} src={require("./assets/donut-center.png")} alt="" />
-);
-
 interface Props {
   readonly value: number;
 }
@@ -34,44 +30,18 @@ export default function DonutChart({ value }: Props) {
         position: "top",
         display: false, // Position of the legend
       },
+
+      datalabels: {
+        display: true,
+        formatter: (value: any) => value, // Display value inside the chart
+        color: "#fff",
+      },
+
       tooltip: {
         callbacks: {
           label: (context: any) => {
             return `${context.label}: ${context.raw}%`; // Custom tooltip format
           },
-        },
-      },
-      customCenterContent: {
-        beforeDraw: (chart: any) => {
-          const ctx = chart.ctx;
-          const width = chart.width;
-          const height = chart.height;
-          const x = width / 2;
-          const y = height / 2;
-
-          ctx.clearRect(0, 0, width, height);
-
-          ctx.save();
-
-          ctx.fillStyle = "#f0f0f0"; // Background color for the center
-          ctx.beginPath();
-          ctx.arc(x, y, 50, 0, Math.PI * 2);
-          ctx.fill();
-
-          ctx.font = "24px Arial";
-          ctx.fillStyle = "#333"; // Text color
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText("Center Text", x, y); // Custom text in the center
-
-          ctx.strokeStyle = "#FF4560"; // Border color
-          ctx.lineWidth = 3;
-          ctx.beginPath();
-          ctx.moveTo(x - 40, y - 40); // Start point
-          ctx.lineTo(x + 40, y + 40); // End point
-          ctx.stroke();
-
-          ctx.restore();
         },
       },
     },
@@ -99,11 +69,11 @@ export default function DonutChart({ value }: Props) {
         <div>
           <div className="custom-plagin-done">
             <div className="custom-plagin-done-box"></div>
-            <span>Bajarildi</span>
+            <span>Bajarildi: {value}%</span>
           </div>
           <div className="custom-plagin-not-done">
             <div className="custom-plagin-not-done-box"></div>
-            <span>Bajarilmadi</span>
+            <span>Bajarilmadi {100 - value}%</span>
           </div>
         </div>
       </div>
