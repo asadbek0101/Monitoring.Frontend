@@ -73,7 +73,7 @@ export default function DonutChart({ value }: Props) {
           </div>
           <div className="custom-plagin-not-done">
             <div className="custom-plagin-not-done-box"></div>
-            <span>Bajarilmadi {100 - value}%</span>
+            <span>Jarayonda: {100 - value}%</span>
           </div>
         </div>
       </div>

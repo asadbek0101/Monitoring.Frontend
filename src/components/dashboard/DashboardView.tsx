@@ -35,6 +35,9 @@ export default function DashboardVIew({ data = [] }: Props) {
         Header: "Foizda",
         accessor: "inPercentage",
         width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value?.substring(0, 4)}</span>;
+        },
       },
       {
         Header: "Yaratilgan vaqti",
