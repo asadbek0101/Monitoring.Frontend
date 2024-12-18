@@ -141,7 +141,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
     [data?.categories],
   );
 
-  const downloadFile = useCallback(
+  const downloadFile1 = useCallback(
     (categoryId: any, templateId: any) => {
       TodosApi.getAllFileNames({ categoryId, templateId })
         .then((r) => {
@@ -167,6 +167,29 @@ export default function DashboardChartsWrapper({ filter }: Props) {
             });
         })
         .catch(showError);
+    },
+    [TodosApi],
+  );
+
+  const downloadFile2 = useCallback(
+    (fileName: string) => {
+    
+            // eslint-disable-next-line array-callback-return
+                axios({
+                  url: `http://172.24.201.4:1000/api/Object/monitoring?token=${fileName}`,
+                  method: "GET",
+                  responseType: "blob", // important
+                }).then((response) => {
+                  const url = window.URL.createObjectURL(new Blob([response.data]));
+                  const link: any = document.createElement("a");
+                  link.href = url;
+                  link.setAttribute("download", `${fileName}`);
+                  document.body.appendChild(link);
+                  link.click();
+
+                  link.parentNode.removeChild(link);
+                });
+       
     },
     [TodosApi],
   );
@@ -234,7 +257,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
                   comment={category.comment}
                   setChart={setChartHandler}
                   setChartForOne={setChartForOneHandler}
-                  downloadFile={(todoId: any) => downloadFile(category?.id, todoId)}
+                  downloadFile={downloadFile2}
                 />
               </div>
             );
@@ -250,7 +273,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
             comment={oneData.comment}
             setChart={setChartHandler}
             setChartForOne={setChartHandler}
-            downloadFile={(todoId: any) => downloadFile(oneData?.id, todoId)}
+            downloadFile={downloadFile2}
           />
         </div>
       )}

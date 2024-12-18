@@ -94,7 +94,7 @@ export default function ChartBox({
           <Chart labels={labels} data={data} setChartItem={setActiveChartItem} />
         </div>
         <div className="mt-5">
-          <ChartInfoGroup activeItem={activeChartItem} data={data} />
+          <ChartInfoGroup activeItem={activeChartItem} data={data} downloadFile={downloadFile} />
         </div>
         {Boolean(comment) && (
           <div className="chart-comment-wrapper">
