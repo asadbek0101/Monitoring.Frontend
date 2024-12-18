@@ -25,11 +25,17 @@ export default function DashboardVIew({ data = [] }: Props) {
         Header: "Rejada",
         accessor: "inPlan",
         width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value?.substring(0, 4)}</span>;
+        },
       },
       {
         Header: "Amalda",
         accessor: "inProcess",
         width: 200,
+        Cell: (row: any) => {
+          return <span>{row?.value?.substring(0, 4)}</span>;
+        },
       },
       {
         Header: "Foizda",
