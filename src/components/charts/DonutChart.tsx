@@ -69,11 +69,11 @@ export default function DonutChart({ value }: Props) {
         <div>
           <div className="custom-plagin-done">
             <div className="custom-plagin-done-box"></div>
-            <span>Bajarildi: {value}%</span>
+            <span>Bajarildi: {value?.toString()?.substring(0, 4)}%</span>
           </div>
           <div className="custom-plagin-not-done">
             <div className="custom-plagin-not-done-box"></div>
-            <span>Jarayonda: {100 - value}%</span>
+            <span>Jarayonda: {(100 - value)?.toString()?.substring(0, 4)}%</span>
           </div>
         </div>
       </div>
