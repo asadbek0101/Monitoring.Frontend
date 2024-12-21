@@ -122,7 +122,9 @@ export default function TodosTableWrapper({ filter }: Props) {
     [categories],
   );
 
-  const downloadFile = useCallback((fileName: any) => {
+  const downloadFile = useCallback((value: any) => {
+    const fileName = value?.fileName;
+    const dowloadedFileName = fileName.replace(/^.*(?=\.\w+)/, value?.region);
     axios({
       url: `http://172.24.201.4:1000/api/Object/monitoring?token=${fileName}`,
       method: "GET",
@@ -131,7 +133,7 @@ export default function TodosTableWrapper({ filter }: Props) {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link: any = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", `${fileName}`);
+      link.setAttribute("download", `${dowloadedFileName}`);
       document.body.appendChild(link);
       link.click();
 

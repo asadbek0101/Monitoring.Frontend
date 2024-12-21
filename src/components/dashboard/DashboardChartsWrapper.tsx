@@ -13,7 +13,6 @@ import Modal from "../ui/Modal";
 import DashboardVIew from "./DashboardView";
 import axios from "axios";
 import Button, { BgColors } from "../ui/Button";
-import DonwloadIcon from "../icons/DowloadIcon";
 import DashboardPdf from "./DashboardPdf";
 import SaveExcel from "../ui/SaveExcel";
 import ChartBox from "../charts/ChartBox";
@@ -172,7 +171,11 @@ export default function DashboardChartsWrapper({ filter }: Props) {
   );
 
   const downloadFile2 = useCallback(
-    (fileName: string) => {
+    (value: any) => {
+      const region = regions.filter((item: any) => item?.value == regionId);
+
+      const fileName = value?.fileName;
+      const dowloadedFileName = fileName.replace(/^.*(?=\.\w+)/, region[0]?.label || "File");
     
             // eslint-disable-next-line array-callback-return
                 axios({
@@ -183,7 +186,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
                   const url = window.URL.createObjectURL(new Blob([response.data]));
                   const link: any = document.createElement("a");
                   link.href = url;
-                  link.setAttribute("download", `${fileName}`);
+                  link.setAttribute("download", `${dowloadedFileName}`);
                   document.body.appendChild(link);
                   link.click();
 
@@ -191,7 +194,7 @@ export default function DashboardChartsWrapper({ filter }: Props) {
                 });
        
     },
-    [TodosApi],
+    [TodosApi, regions, regionId],
   );
 
   return (

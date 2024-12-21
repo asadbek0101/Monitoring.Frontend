@@ -107,7 +107,7 @@ export default function TodosTable({ data = [], edit, downloadFile, selectIds, l
                 <Button
                   className="text-light p-2"
                   bgColor={"#fff"}
-                  onClick={() => downloadFile(row?.row?.original?.fileName)}
+                  onClick={() => downloadFile(row?.row?.original)}
                 >
                   <DonwloadIcon color="black" />
                 </Button>

@@ -33,7 +33,7 @@ export default function ChartInfoGroup({ data, activeItem, downloadFile }: Props
                  <Button
                                   className="text-light p-2"
                                   bgColor={"#fff"}
-                                  onClick={() => downloadFile(item.fileName)}
+                                  onClick={() => downloadFile(item)}
                                 >
                                   <DonwloadIcon color="black" />
                                 </Button>
